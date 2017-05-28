@@ -18,7 +18,6 @@ install_requires = [
 ]
 
 testing_requires = [
-    'nose',
     'coverage',
 ]
 
