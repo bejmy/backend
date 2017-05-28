@@ -2,4 +2,4 @@
 max-line-length = 80
 max-complexity = 12
 select = A,B,C,D,E,F,W,B,T002,B901,B902,B903,B950
-ignore=E501,D100,D104
+ignore=E501,D100,D101,D104
