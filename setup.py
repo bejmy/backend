@@ -2,11 +2,14 @@
 
 from distutils.core import setup
 
+with open('README.txt') as file:
+    long_description = file.read()
+
 setup(
     name='bejmy',
     version='0.1',
     description='Home Money Management',
-    long_description='Home Money Management',
+    long_description=long_description,
     author='Rafał Selewońko',
     author_email='rafal@selewonko.com',
     maintainer='Rafał Selewońko',
