@@ -1,5 +1,3 @@
-# backend
-
 Bejmy Backend
 =============
 
