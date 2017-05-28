@@ -21,6 +21,6 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
 Development
 -----------
 
-..code-block:
+..code-block::
 
     pip install -e .[development]
