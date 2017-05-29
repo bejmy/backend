@@ -15,6 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 install_requires = [
     'Django<2',
     'djangorestframework',
+    'django-mptt',
 ]
 
 testing_requires = [

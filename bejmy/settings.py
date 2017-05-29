@@ -29,9 +29,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'mptt',
+
     'bejmy.users',
     'bejmy.accounts',
     'bejmy.transactions',
+    'bejmy.labels',
 ]
 
 MIDDLEWARE = [

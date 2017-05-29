@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from mptt.fields import TreeForeignKey
+
 
 class Transaction(models.Model):
     user = models.ForeignKey(
@@ -29,6 +31,34 @@ class Transaction(models.Model):
     description = models.CharField(
         max_length=255,
         verbose_name=_("description")
+    )
+    STATUS_PLANNED = 1
+    STATUS_REGISTERED = 2
+    STATUS_BALANCED = 3
+    STATUS_DEFAULT = STATUS_REGISTERED
+    STATUS_CHOICES = (
+        (STATUS_PLANNED, _("planned")),
+        (STATUS_REGISTERED, _("registered")),
+        (STATUS_BALANCED, _("balanced")),
+    )
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_CHOICES,
+        default=STATUS_DEFAULT
+    )
+    TRANSACTION_WITHDRAWAL = 1
+    TRANSACTION_DEPOSIT = 2
+    TRANSACTION_TRANSFER = 3
+    TRANSACTION_CHOICES = (
+        (TRANSACTION_WITHDRAWAL, _("withdrawal")),
+        (TRANSACTION_DEPOSIT, _("deposit")),
+        (TRANSACTION_TRANSFER, _("transfer")),
+    )
+    transaction_type = models.PositiveSmallIntegerField(
+        choices=TRANSACTION_CHOICES
+    )
+    label = TreeForeignKey(
+        'labels.Label',
+        verbose_name=_("label")
     )
 
     class Meta:
