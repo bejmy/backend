@@ -3,6 +3,7 @@ from .models import Label
 
 
 def _create_labels(tree, user, transaction_type, parent=None):
+
     for name, children in tree:
         label = Label(
             parent=parent,
@@ -15,5 +16,7 @@ def _create_labels(tree, user, transaction_type, parent=None):
 
 
 def create_initial_labels(user_model, user, created, **kwargs):
+
     if created:
-        _create_labels(initial.withdrawal, user, transaction_type=Label.TRANSACTION_WITHDRAWAL)
+        _create_labels(initial.withdrawal, user,
+                       transaction_type=Label.TRANSACTION_WITHDRAWAL)
