@@ -4,8 +4,6 @@ from .models import Label
 
 def create_initial_labels(user_model, user, created, **kwargs):
 
-    Label.objects.all().delete()
-
     def create_labels(tree, transaction_type, parent=None):
         for name, children in tree:
             label = Label(
