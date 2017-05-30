@@ -136,7 +136,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'bejmy.tex', 'bejmy Documentation',
-     'Rafał Selewońko', 'manual'),
+     u'Rafał Selewońko', 'manual'),
 ]
 
 
