@@ -16,6 +16,8 @@ install_requires = [
     'Django<2',
     'djangorestframework',
     'django-mptt',
+    'dj-database-url',
+    'whitenoise',
 ]
 
 testing_requires = [
