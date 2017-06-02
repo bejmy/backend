@@ -15,8 +15,8 @@ def _create_labels(tree, user, transaction_type, parent=None):
         _create_labels(children, transaction_type, label)
 
 
-def create_initial_labels(user_model, user, created, **kwargs):
+def create_initial_labels(sender, instance, created, **kwargs):
 
     if created:
-        _create_labels(initial.withdrawal, user,
+        _create_labels(initial.withdrawal, instance,
                        transaction_type=Label.TRANSACTION_WITHDRAWAL)

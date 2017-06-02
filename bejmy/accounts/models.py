@@ -13,4 +13,4 @@ class Account(models.Model):
     )
 
     def __str__(self):
-        return _("{user} / {name}").format(user=self.user, name=self.name)
+        return _(f"{self.user} / {self.name}")
