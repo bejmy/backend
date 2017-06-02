@@ -12,7 +12,7 @@ def _create_labels(tree, user, transaction_type, parent=None):
             transaction_type=transaction_type
         )
         label.save()
-        _create_labels(children, transaction_type, label)
+        _create_labels(children, user, transaction_type, label)
 
 
 def create_initial_labels(sender, instance, created, **kwargs):
