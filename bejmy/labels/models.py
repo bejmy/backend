@@ -34,4 +34,4 @@ class Label(MPTTModel):
         verbose_name_plural = _("labels")
 
     def __str__(self):
-        return f"{self.user / self.name}"
+        return f"{self.user} / {self.name}"
