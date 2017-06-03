@@ -26,7 +26,8 @@ class Transaction(models.Model):
     amount = models.DecimalField(
         max_digits=9,
         decimal_places=2,
-        verbose_name=_("amount")
+        verbose_name=_("amount"),
+        default=0
     )
     description = models.CharField(
         max_length=255,
@@ -45,16 +46,19 @@ class Transaction(models.Model):
         choices=STATUS_CHOICES,
         default=STATUS_DEFAULT
     )
+    TRANSACTION_BALANCE = 0
     TRANSACTION_WITHDRAWAL = 1
     TRANSACTION_DEPOSIT = 2
     TRANSACTION_TRANSFER = 3
     TRANSACTION_CHOICES = (
+        (TRANSACTION_BALANCE, _("balance")),
         (TRANSACTION_WITHDRAWAL, _("withdrawal")),
         (TRANSACTION_DEPOSIT, _("deposit")),
         (TRANSACTION_TRANSFER, _("transfer")),
     )
     transaction_type = models.PositiveSmallIntegerField(
-        choices=TRANSACTION_CHOICES
+        choices=TRANSACTION_CHOICES,
+        default=TRANSACTION_WITHDRAWAL
     )
     label = TreeForeignKey(
         'labels.Label',

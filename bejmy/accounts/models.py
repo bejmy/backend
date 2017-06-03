@@ -11,6 +11,13 @@ class Account(models.Model):
         max_length=255,
         verbose_name=_("name")
     )
+    balance = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0,
+        editable=False,
+        verbose_name=_("balance")
+    )
 
     def __str__(self):
-        return f"{self.user} / {self.name}"
+        return f"{self.user} / {self.name} / {self.balance}"
