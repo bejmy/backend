@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ugettext
 
 
 class Account(models.Model):
@@ -14,4 +13,4 @@ class Account(models.Model):
     )
 
     def __str__(self):
-        return ugettext(f"{self.user} / {self.name}")
+        return f"{self.user} / {self.name}"
