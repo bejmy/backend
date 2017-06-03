@@ -19,7 +19,7 @@ class Account(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user} / {self.name} / {self.balance}"
+        return f"{self.name} ({self.balance})"
 
     @property
     def transactions(self):

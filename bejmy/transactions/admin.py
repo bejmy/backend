@@ -19,6 +19,3 @@ class TransactionAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, *args, **kwargs):
         obj.user = request.user
         return super().save_model(request, obj, *args, **kwargs)
-
-    def get_changeform_initial_data(self, request):
-        return {'user': request.user}

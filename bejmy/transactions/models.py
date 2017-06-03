@@ -58,8 +58,9 @@ class Transaction(models.Model):
         (TRANSACTION_TRANSFER, _("transfer")),
     )
     transaction_type = models.PositiveSmallIntegerField(
+        blank=True,
         choices=TRANSACTION_CHOICES,
-        default=TRANSACTION_WITHDRAWAL
+        verbose_name=_("transaction type")
     )
     label = TreeForeignKey(
         'labels.Label',
@@ -72,7 +73,7 @@ class Transaction(models.Model):
         verbose_name_plural = _("transactions")
 
     def __str__(self):
-        return self.description
+        return f"{self.description or self.label} ({self.amount})"
 
     def save(self, *args, **kwargs):
         if self.source and self.destination:
@@ -82,7 +83,6 @@ class Transaction(models.Model):
         elif self.destination:
             self.transaction_type = Transaction.TRANSACTION_DEPOSIT
         super().save(*args, **kwargs)
-
 
     @property
     def accounts(self):
