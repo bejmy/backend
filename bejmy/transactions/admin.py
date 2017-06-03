@@ -14,6 +14,9 @@ class TransactionAdmin(admin.ModelAdmin):
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
         form.user = request.user
+        for field in ('source', 'destination', 'label'):
+            form.base_fields[field].widget.can_add_related = False
+            form.base_fields[field].widget.can_change_related = False
         return form
 
     def save_model(self, request, obj, *args, **kwargs):

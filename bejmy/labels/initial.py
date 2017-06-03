@@ -1,13 +1,15 @@
 from django.utils.translation import ugettext_lazy as _
 
 deposit = (
-    (_("Paycheck"), ()),
-    (_("Investment"), ()),
-    (_("Returned Purchase"), ()),
-    (_("Bonus"), ()),
-    (_("Interest Income"), ()),
-    (_("Reimbursement"), ()),
-    (_("Rental Income"), ()),
+    (_("Income"), (
+        (_("Paycheck"), ()),
+        (_("Investment"), ()),
+        (_("Returned Purchase"), ()),
+        (_("Bonus"), ()),
+        (_("Interest Income"), ()),
+        (_("Reimbursement"), ()),
+        (_("Rental Income"), ()),
+    )),
 )
 
 withdrawal = (
@@ -31,7 +33,6 @@ withdrawal = (
     )),
     (_("Personal Care"), (
         (_("Laundry"), ()),
-        (_("Remove: Gym"), ()),
         (_("Hair"), ()),
         (_("Spa & Massage"), ()),
     )),
@@ -113,6 +114,5 @@ withdrawal = (
         (_("Local Tax"), ()),
         (_("Sales Tax"), ()),
         (_("Property Tax"), ()),
-
     )),
 )
