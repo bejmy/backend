@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from mptt.fields import TreeForeignKey
 
+from bejmy.accounts.models import Account
+
 
 class Transaction(models.Model):
     user = models.ForeignKey(
@@ -11,14 +13,14 @@ class Transaction(models.Model):
     )
     source = models.ForeignKey(
         'accounts.Account',
-        related_name='transaction_as_source',
+        related_name='transactions_as_source',
         verbose_name=_("source"),
         blank=True,
         null=True
     )
     destination = models.ForeignKey(
         'accounts.Account',
-        related_name='transaction_as_destination',
+        related_name='transactions_as_destination',
         verbose_name=_("destination"),
         blank=True,
         null=True
@@ -31,6 +33,7 @@ class Transaction(models.Model):
     )
     description = models.CharField(
         max_length=255,
+        blank=True,
         verbose_name=_("description")
     )
     STATUS_PLANNED = 1
@@ -62,7 +65,8 @@ class Transaction(models.Model):
     )
     label = TreeForeignKey(
         'labels.Label',
-        verbose_name=_("label")
+        verbose_name=_("label"),
+        null=True
     )
 
     class Meta:
@@ -72,3 +76,12 @@ class Transaction(models.Model):
 
     def __str__(self):
         return self.description
+
+    @property
+    def accounts(self):
+        pks = []
+        if self.source:
+            pks.append(self.source)
+        if self.destination:
+            pks.append(self.destination)
+        return Account.objects.filter(pk__in=pks)

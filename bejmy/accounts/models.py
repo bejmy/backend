@@ -15,9 +15,13 @@ class Account(models.Model):
         max_digits=12,
         decimal_places=2,
         default=0,
-        editable=False,
         verbose_name=_("balance")
     )
 
     def __str__(self):
         return f"{self.user} / {self.name} / {self.balance}"
+
+    @property
+    def transactions(self):
+        # TODO
+        pass
