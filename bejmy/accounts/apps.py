@@ -11,6 +11,6 @@ class AccountsConfig(AppConfig):
     def ready(self):
         from .signals import update_account_balance
         pre_save.connect(
-                update_account_balance,
-                sender='transactions.Transaction',
-                dispatch_uid='update_account_balance')
+            update_account_balance,
+            sender='transactions.Transaction',
+            dispatch_uid='update_account_balance')

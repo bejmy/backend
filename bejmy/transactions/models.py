@@ -49,12 +49,10 @@ class Transaction(models.Model):
         choices=STATUS_CHOICES,
         default=STATUS_DEFAULT
     )
-    TRANSACTION_BALANCE = 0
     TRANSACTION_WITHDRAWAL = 1
     TRANSACTION_DEPOSIT = 2
     TRANSACTION_TRANSFER = 3
     TRANSACTION_CHOICES = (
-        (TRANSACTION_BALANCE, _("balance")),
         (TRANSACTION_WITHDRAWAL, _("withdrawal")),
         (TRANSACTION_DEPOSIT, _("deposit")),
         (TRANSACTION_TRANSFER, _("transfer")),
@@ -72,10 +70,19 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = _("transaction")
         verbose_name_plural = _("transactions")
-        unique_together = [('source', 'destination')]
 
     def __str__(self):
         return self.description
+
+    def save(self, *args, **kwargs):
+        if self.source and self.destination:
+            self.transaction_type = Transaction.TRANSACTION_TRANSFER
+        elif self.source:
+            self.transaction_type = Transaction.TRANSACTION_WITHDRAWAL
+        elif self.destination:
+            self.transaction_type = Transaction.TRANSACTION_DEPOSIT
+        super().save(*args, **kwargs)
+
 
     @property
     def accounts(self):

@@ -9,7 +9,7 @@ from .forms import TransactionAdminForm
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
-    readonly_fields = ['user']
+    readonly_fields = ['user', 'transaction_type']
 
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)

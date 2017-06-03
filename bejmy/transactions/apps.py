@@ -11,6 +11,6 @@ class TransactionsConfig(AppConfig):
     def ready(self):
         from .signals import create_initial_balancing_transaction
         post_save.connect(
-                create_initial_balancing_transaction,
-                sender='accounts.Account',
-                dispatch_uid='create_initial_balancing_transaction')
+            create_initial_balancing_transaction,
+            sender='accounts.Account',
+            dispatch_uid='create_initial_balancing_transaction')

@@ -1,6 +1,8 @@
 from django import forms
-from bejmy.labels.models import Label
+from django.utils.translation import ugettext as _
+
 from bejmy.accounts.models import Account
+from bejmy.labels.models import Label
 from bejmy.users.models import User
 
 
@@ -23,3 +25,13 @@ class TransactionAdminForm(forms.ModelForm):
         queryset = Account.objects.filter(user=user)
         self.fields['source'].queryset = queryset
         self.fields['destination'].queryset = queryset
+
+    def clean(self):
+        source = self.cleaned_data.get('source')
+        destination = self.cleaned_data.get('destination')
+        if not (source or destination):
+            raise forms.ValidationError(_("Account(s) not selected."))
+        if source == destination:
+            raise forms.ValidationError(
+                    _("Source and destination accounts are the same."))
+        return self.cleaned_data
