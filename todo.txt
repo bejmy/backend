@@ -1,10 +1,8 @@
-Update account balance on transaction delete
 Recurring transactions
+Mark planned as registered on specific time
 Labels/Categories per account or constant?
 Allow for tags/labels?
 Pożyczki komuś i od kogoś
 Waluta konta
 Współdzielenie kont
 Konta organizacji
-
-bug: initial transaction counts twice

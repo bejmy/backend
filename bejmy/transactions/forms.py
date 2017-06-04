@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django import forms
 from django.utils.translation import ugettext as _
 
@@ -10,6 +11,12 @@ from .models import Transaction
 
 
 class TransactionAdminForm(forms.ModelForm):
+
+    amount = forms.DecimalField(
+        min_value=Decimal('0.01'),
+        decimal_places=2
+    )
+
     class Meta:
         exclude = ()
         model = Transaction
