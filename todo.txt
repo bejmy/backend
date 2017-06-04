@@ -1,3 +1,5 @@
+Recurring transactions
+Mark planned as registered on specific time
 Labels/Categories per account or constant?
 Allow for tags/labels?
 Pożyczki komuś i od kogoś

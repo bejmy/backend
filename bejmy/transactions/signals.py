@@ -16,3 +16,7 @@ def create_initial_balancing_transaction(sender, instance, created, **kwags):
             transaction.source = instance
 
         transaction.save()
+
+        # force save balance again because it was overwritten by transaction
+        # signal
+        instance.save()
