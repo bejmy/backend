@@ -28,15 +28,14 @@ def create_initial_balancing_transaction(sender, instance, created, **kwags):
         instance.save()
 
 
-
 def _add_transaction(account, transaction):
     Account.objects.filter(pk=account.pk) \
-       .update(balance=F('balance') + transaction.amount)
+        .update(balance=F('balance') + transaction.amount)
 
 
 def _subtract_transaction(account, transaction):
     Account.objects.filter(pk=account.pk) \
-       .update(balance=F('balance') - transaction.amount)
+        .update(balance=F('balance') - transaction.amount)
 
 
 def _apply_transaction(transaction):

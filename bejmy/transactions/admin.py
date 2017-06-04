@@ -1,9 +1,7 @@
 from django.contrib import admin
 
 from bejmy.transactions.models import Transaction
-from bejmy.accounts.models import Account
-from bejmy.labels.models import Label
-from .forms import TransactionAdminForm
+from bejmy.transactions.forms import TransactionAdminForm
 
 
 @admin.register(Transaction)

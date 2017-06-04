@@ -4,7 +4,6 @@ from django.utils.translation import ugettext as _
 
 from bejmy.accounts.models import Account
 from bejmy.labels.models import Label
-from bejmy.users.models import User
 
 
 from .models import Transaction
@@ -40,5 +39,5 @@ class TransactionAdminForm(forms.ModelForm):
             raise forms.ValidationError(_("Account(s) not selected."))
         if source == destination:
             raise forms.ValidationError(
-                    _("Source and destination accounts are the same."))
+                _("Source and destination accounts are the same."))
         return self.cleaned_data
