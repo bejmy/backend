@@ -22,17 +22,16 @@ install_requires = [
 
 testing_requires = [
     'coverage',
+    'flake8',
+    'flake8-bugbear',
+    'flake8-comprehensions',
+    'flake8-debugger',
+    'flake8-docstrings',
+    'flake8-string-format',
+    'mccabe',
 ]
 
 development_requires = [
-    'flake8',
-    'flake8-bugbear',
-    'flake8-docstrings',
-    'flake8-comprehensions',
-    'flake8-debugger',
-    'flake8-string-format',
-    'mccabe',
-    'coverage',
     'sphinx',
 ] + testing_requires
 
