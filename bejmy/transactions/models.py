@@ -3,8 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from mptt.fields import TreeForeignKey
 
-from bejmy.accounts.models import Account
-
 
 class Transaction(models.Model):
     user = models.ForeignKey(
@@ -83,12 +81,3 @@ class Transaction(models.Model):
         elif self.destination:
             self.transaction_type = Transaction.TRANSACTION_DEPOSIT
         super().save(*args, **kwargs)
-
-    @property
-    def accounts(self):
-        pks = []
-        if self.source:
-            pks.append(self.source)
-        if self.destination:
-            pks.append(self.destination)
-        return Account.objects.filter(pk__in=pks)
