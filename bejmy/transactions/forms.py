@@ -3,7 +3,7 @@ from django import forms
 from django.utils.translation import ugettext as _
 
 from bejmy.accounts.models import Account
-from bejmy.labels.models import Label
+from bejmy.categories.models import Category
 
 
 from .models import Transaction
@@ -25,8 +25,8 @@ class TransactionAdminForm(forms.ModelForm):
 
         user = self.user
 
-        queryset = Label.objects.filter(user=user)
-        self.fields['label'].queryset = queryset
+        queryset = Category.objects.filter(user=user)
+        self.fields['category'].queryset = queryset
 
         queryset = Account.objects.filter(user=user)
         self.fields['source'].queryset = queryset

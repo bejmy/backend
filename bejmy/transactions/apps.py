@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class TransactionsConfig(AppConfig):
     name = 'bejmy.transactions'
-    label = 'transactions'
+    category = 'transactions'
     verbose_name = _("transactions")
 
     def ready(self):

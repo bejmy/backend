@@ -60,9 +60,9 @@ class Transaction(models.Model):
         choices=TRANSACTION_CHOICES,
         verbose_name=_("transaction type")
     )
-    label = TreeForeignKey(
-        'labels.Label',
-        verbose_name=_("label"),
+    category = TreeForeignKey(
+        'categories.Category',
+        verbose_name=_("category"),
         null=True
     )
 
@@ -71,7 +71,7 @@ class Transaction(models.Model):
         verbose_name_plural = _("transactions")
 
     def __str__(self):
-        return f"{self.description or self.label} ({self.amount})"
+        return f"{self.description or self.category} ({self.amount})"
 
     def save(self, *args, **kwargs):
         if self.source and self.destination:

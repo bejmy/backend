@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'bejmy.users',
     'bejmy.accounts',
     'bejmy.transactions',
-    'bejmy.labels',
+    'bejmy.categories',
 ]
 
 MIDDLEWARE = [

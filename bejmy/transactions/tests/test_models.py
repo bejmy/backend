@@ -3,7 +3,7 @@ from django.test import TestCase
 from bejmy.transactions.models import Transaction
 from bejmy.users.models import User
 from bejmy.accounts.models import Account
-from bejmy.labels.models import Label
+from bejmy.categories.models import Category
 
 
 class TransactionModelTestCase(TestCase):
@@ -26,12 +26,12 @@ class TransactionModelTestCase(TestCase):
         )
         self.destination_account.save()
 
-        self.label = Label(
+        self.category = Category(
             user=user,
-            name="Test Label",
-            transaction_type=Label.TRANSACTION_DEPOSIT
+            name="Test Category",
+            transaction_type=Category.TRANSACTION_DEPOSIT
         )
-        self.label.save()
+        self.category.save()
 
         self.transaction = Transaction(
             user=user,
@@ -67,9 +67,9 @@ class TransactionModelTestCase(TestCase):
             str(self.transaction),
             f"{self.transaction.description} ({self.transaction.amount})")
 
-    def test_cast_to_string_has_label_and_amount(self):
+    def test_cast_to_string_has_category_and_amount(self):
         self.transaction.description = ''
-        self.transaction.label = self.label
+        self.transaction.category = self.category
         self.assertEqual(
             str(self.transaction),
-            f"{self.transaction.label} ({self.transaction.amount})")
+            f"{self.transaction.category} ({self.transaction.amount})")

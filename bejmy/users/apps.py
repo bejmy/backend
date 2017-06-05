@@ -4,5 +4,5 @@ from django.utils.translation import ugettext_lazy as _
 
 class UsersConfig(AppConfig):
     name = 'bejmy.users'
-    label = 'users'
+    category = 'users'
     verbose_name = _("users")
