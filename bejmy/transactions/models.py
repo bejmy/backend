@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from mptt.fields import TreeForeignKey
@@ -65,6 +66,20 @@ class Transaction(models.Model):
         verbose_name=_("category"),
         null=True
     )
+    # created_by = models.ForeignKey(
+    #     'users.User',
+    #     verbose_name=_('created by')
+    # )
+    created_at = models.DateTimeField(
+        verbose_name=_('created at')
+    )
+    # modified_by = models.ForeignKey(
+    #     'users.User',
+    #     verbose_name=_('modified by'),
+    # )
+    modified_at = models.DateTimeField(
+        verbose_name=_('modified at'),
+    )
 
     class Meta:
         verbose_name = _("transaction")
@@ -73,11 +88,21 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.description or self.category} ({self.amount})"
 
-    def save(self, *args, **kwargs):
+    def get_transaction_type(self):
         if self.source and self.destination:
-            self.transaction_type = Transaction.TRANSACTION_TRANSFER
+            transaction_type = Transaction.TRANSACTION_TRANSFER
         elif self.source:
-            self.transaction_type = Transaction.TRANSACTION_WITHDRAWAL
+            transaction_type = Transaction.TRANSACTION_WITHDRAWAL
         elif self.destination:
-            self.transaction_type = Transaction.TRANSACTION_DEPOSIT
+            transaction_type = Transaction.TRANSACTION_DEPOSIT
+        return transaction_type
+
+    def save(self, *args, **kwargs):
+
+        # set created and modified times
+        if not self.id:
+            self.created_at = timezone.now()
+        self.modified_at = timezone.now()
+
+        self.transaction_type = self.get_transaction_type()
         super().save(*args, **kwargs)

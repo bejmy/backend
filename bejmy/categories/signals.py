@@ -1,5 +1,6 @@
 from . import initial
 from .models import Category
+from django.db import transaction
 
 
 def _create_categories(tree, user, transaction_type, parent=None):
@@ -18,7 +19,8 @@ def _create_categories(tree, user, transaction_type, parent=None):
 def create_initial_categories(sender, instance, created, **kwargs):
 
     if created:
-        _create_categories(initial.withdrawal, instance,
-                       transaction_type=Category.TRANSACTION_WITHDRAWAL)
-        _create_categories(initial.deposit, instance,
-                       transaction_type=Category.TRANSACTION_DEPOSIT)
+        with transaction.atomic():
+            _create_categories(initial.withdrawal, instance,
+                               transaction_type=Category.TRANSACTION_WITHDRAWAL)
+            _create_categories(initial.deposit, instance,
+                               transaction_type=Category.TRANSACTION_DEPOSIT)
