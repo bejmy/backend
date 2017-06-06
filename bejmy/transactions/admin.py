@@ -8,6 +8,7 @@ from bejmy.transactions.forms import TransactionAdminForm
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
     list_display = (
+        'id',
         'description',
         'category',
         'amount',
