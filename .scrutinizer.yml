@@ -10,7 +10,7 @@ build:
     tests:
         override:
             -
-                command: 'coverage python manage.py test'
+                command: 'coverage run manage.py test'
                 coverage:
                     file: '.coverage'
                     format: 'py-cc'
