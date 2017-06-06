@@ -1,534 +1,522 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 20:44+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: bejmy\n"
+"Language: pl\n"
 
 #: bejmy/accounts/apps.py:8
 msgid "accounts"
-msgstr ""
+msgstr "Kont"
 
 #: bejmy/accounts/models.py:8 bejmy/categories/models.py:16
 #: bejmy/transactions/models.py:12
 msgid "user"
-msgstr ""
+msgstr "użytkownik"
 
 #: bejmy/accounts/models.py:12 bejmy/categories/models.py:20
 msgid "name"
-msgstr ""
+msgstr "Nazwa"
 
 #: bejmy/accounts/models.py:18
 msgid "balance initial"
-msgstr ""
+msgstr "Początkowo równowaga"
 
 #: bejmy/accounts/models.py:24
 msgid "balance"
-msgstr ""
+msgstr "bilansowy"
 
 #: bejmy/accounts/models.py:30
 msgid "balance planned"
-msgstr ""
+msgstr "Planowane saldo"
 
 #: bejmy/accounts/models.py:36
 msgid "balance registered"
-msgstr ""
+msgstr "Rejestrowane saldo"
 
 #: bejmy/categories/apps.py:9 bejmy/categories/models.py:34
 msgid "categories"
-msgstr ""
+msgstr "kategorie"
 
 #: bejmy/categories/initial.py:4
 msgid "Income"
-msgstr ""
+msgstr "Dochód"
 
 #: bejmy/categories/initial.py:5
 msgid "Paycheck"
-msgstr ""
+msgstr "Wypłata"
 
 #: bejmy/categories/initial.py:6
 msgid "Investment"
-msgstr ""
+msgstr "Inwestycja"
 
 #: bejmy/categories/initial.py:7
 msgid "Returned Purchase"
-msgstr ""
+msgstr "Zwrócony zakup"
 
 #: bejmy/categories/initial.py:8
 msgid "Bonus"
-msgstr ""
+msgstr "Premia"
 
 #: bejmy/categories/initial.py:9
 msgid "Interest Income"
-msgstr ""
+msgstr "Wynik z tytułu odsetek"
 
 #: bejmy/categories/initial.py:10
 msgid "Reimbursement"
-msgstr ""
+msgstr "Zwrot kosztów"
 
 #: bejmy/categories/initial.py:11
 msgid "Rental Income"
-msgstr ""
+msgstr "Dochód z wynajmu"
 
 #: bejmy/categories/initial.py:16
 msgid "Entertainment"
-msgstr ""
+msgstr "Zabawa"
 
 #: bejmy/categories/initial.py:17
 msgid "Arts"
-msgstr ""
+msgstr "Sztuka"
 
 #: bejmy/categories/initial.py:18
 msgid "Music"
-msgstr ""
+msgstr "Muzyka"
 
 #: bejmy/categories/initial.py:19
 msgid "Movies & DVDs"
-msgstr ""
+msgstr "Filmy i DVD"
 
 #: bejmy/categories/initial.py:20
 msgid "Newspaper & Magazines"
-msgstr ""
+msgstr "Gazeta i czasopisma"
 
 #: bejmy/categories/initial.py:22
 msgid "Education"
-msgstr ""
+msgstr "Edukacja"
 
 #: bejmy/categories/initial.py:23
 msgid "Tuition"
-msgstr ""
+msgstr "Czesne"
 
 #: bejmy/categories/initial.py:24
 msgid "Student Loan"
-msgstr ""
+msgstr "Kredyt studencki"
 
 #: bejmy/categories/initial.py:25
 msgid "Books & Supplies"
-msgstr ""
+msgstr "Książki i materiały"
 
 #: bejmy/categories/initial.py:27
 msgid "Shopping"
-msgstr ""
+msgstr "Zakupy"
 
 #: bejmy/categories/initial.py:28
 msgid "Clothing"
-msgstr ""
+msgstr "Odzież"
 
 #: bejmy/categories/initial.py:29
 msgid "Books"
-msgstr ""
+msgstr "Książki"
 
 #: bejmy/categories/initial.py:30
 msgid "Electronics & Software"
-msgstr ""
+msgstr "Elektronika i oprogramowanie"
 
 #: bejmy/categories/initial.py:31
 msgid "Hobbies"
-msgstr ""
+msgstr "Zainteresowania"
 
 #: bejmy/categories/initial.py:32
 msgid "Sporting Goods"
-msgstr ""
+msgstr "Artykuły sportowe"
 
 #: bejmy/categories/initial.py:34
 msgid "Personal Care"
-msgstr ""
+msgstr "Higieny osobistej"
 
 #: bejmy/categories/initial.py:35
 msgid "Laundry"
-msgstr ""
+msgstr "Pralnia"
 
 #: bejmy/categories/initial.py:36
 msgid "Hair"
-msgstr ""
+msgstr "Włosy"
 
 #: bejmy/categories/initial.py:37
 msgid "Spa & Massage"
-msgstr ""
+msgstr "Spa i masaże"
 
 #: bejmy/categories/initial.py:39
 msgid "Health & Fitness"
-msgstr ""
+msgstr "zdrowie i kondycja"
 
 #: bejmy/categories/initial.py:40
 msgid "Dentist"
-msgstr ""
+msgstr "Dentysta"
 
 #: bejmy/categories/initial.py:41
 msgid "Doctor"
-msgstr ""
+msgstr "Lekarz"
 
 #: bejmy/categories/initial.py:42
 msgid "Eyecare"
-msgstr ""
+msgstr "Opieka oka"
 
 #: bejmy/categories/initial.py:43
 msgid "Pharmacy"
-msgstr ""
+msgstr "Apteka"
 
 #: bejmy/categories/initial.py:44
 msgid "Health Insurance"
-msgstr ""
+msgstr "Ubezpieczenie zdrowotne"
 
 #: bejmy/categories/initial.py:45
 msgid "Gym"
-msgstr ""
+msgstr "siłownia"
 
 #: bejmy/categories/initial.py:46
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: bejmy/categories/initial.py:48
 msgid "Kids"
-msgstr ""
+msgstr "Dzieci"
 
 #: bejmy/categories/initial.py:49
 msgid "Kids Activites"
-msgstr ""
+msgstr "Aktywności dla dzieci"
 
 #: bejmy/categories/initial.py:50
 msgid "Allowance"
-msgstr ""
+msgstr "Dodatek"
 
 #: bejmy/categories/initial.py:51
 msgid "Baby Supplies"
-msgstr ""
+msgstr "Artykuły dla niemowląt"
 
 #: bejmy/categories/initial.py:52
 msgid "Babysitter & Daycare"
-msgstr ""
+msgstr "Opiekunka do dzieci i opieka nad dziećmi"
 
 #: bejmy/categories/initial.py:53
 msgid "Child Support"
-msgstr ""
+msgstr "Pomoc dzieciom"
 
 #: bejmy/categories/initial.py:54
 msgid "Toys"
-msgstr ""
+msgstr "Zabawki"
 
 #: bejmy/categories/initial.py:56
 msgid "Food & Dining"
-msgstr ""
+msgstr "Jedzenie i jadalnia"
 
 #: bejmy/categories/initial.py:57
 msgid "Groceries"
-msgstr ""
+msgstr "Artykuły spożywcze"
 
 #: bejmy/categories/initial.py:58
 msgid "Coffee shops"
-msgstr ""
+msgstr "Kawiarnie"
 
 #: bejmy/categories/initial.py:59
 msgid "Fast Food"
-msgstr ""
+msgstr "Fast food"
 
 #: bejmy/categories/initial.py:60
 msgid "Restaurants"
-msgstr ""
+msgstr "Restauracje"
 
 #: bejmy/categories/initial.py:61
 msgid "Alchohol & Bars"
-msgstr ""
+msgstr "Alkohol i bary"
 
 #: bejmy/categories/initial.py:63
 msgid "Gifts & Donations"
-msgstr ""
+msgstr "Prezenty i dotacje"
 
 #: bejmy/categories/initial.py:64
 msgid "Gift"
-msgstr ""
+msgstr "Prezent"
 
 #: bejmy/categories/initial.py:65
 msgid "Charity"
-msgstr ""
+msgstr "Dobroczynność"
 
 #: bejmy/categories/initial.py:66
 msgid "Church"
-msgstr ""
+msgstr "Kościół"
 
 #: bejmy/categories/initial.py:68
 msgid "Investments"
-msgstr ""
+msgstr "Inwestycje"
 
 #: bejmy/categories/initial.py:69
 msgid "Deposit"
-msgstr ""
+msgstr "Kaucja"
 
 #: bejmy/categories/initial.py:70
 msgid "Withdrawal"
-msgstr ""
+msgstr "Wycofanie"
 
 #: bejmy/categories/initial.py:71
 msgid "Dividends & Cap Gains"
-msgstr ""
+msgstr "Dywidendy i zyski z kapitału"
 
 #: bejmy/categories/initial.py:72
 msgid "Buy"
-msgstr ""
+msgstr "Kupować"
 
 #: bejmy/categories/initial.py:73
 msgid "Sell"
-msgstr ""
+msgstr "Sprzedać"
 
 #: bejmy/categories/initial.py:75
 msgid "Bills & Utilities"
-msgstr ""
+msgstr "Rachunki i narzędzia"
 
 #: bejmy/categories/initial.py:76
 msgid "Television"
-msgstr ""
+msgstr "Telewizja"
 
 #: bejmy/categories/initial.py:77
 msgid "Home Phone"
-msgstr ""
+msgstr "Telefon domowy"
 
 #: bejmy/categories/initial.py:78
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: bejmy/categories/initial.py:79
 msgid "Mobile Phone"
-msgstr ""
+msgstr "Telefon komórkowy"
 
 #: bejmy/categories/initial.py:80
 msgid "Utilities"
-msgstr ""
+msgstr "Narzędzia"
 
 #: bejmy/categories/initial.py:82
 msgid "Auto & Transport"
-msgstr ""
+msgstr "Auto & Transport"
 
 #: bejmy/categories/initial.py:83
 msgid "Gas & Fuel"
-msgstr ""
+msgstr "Gaz i paliwo"
 
 #: bejmy/categories/initial.py:84
 msgid "Parking"
-msgstr ""
+msgstr "Parking"
 
 #: bejmy/categories/initial.py:85 bejmy/categories/initial.py:88
 msgid "Service & Auto Parts"
-msgstr ""
+msgstr "Serwis i części samochodowe"
 
 #: bejmy/categories/initial.py:86
 msgid "Auto Payment"
-msgstr ""
+msgstr "Automatyczna płatność"
 
 #: bejmy/categories/initial.py:87
 msgid "Auto Insurance"
-msgstr ""
+msgstr "Ubezpieczenie samochodu"
 
 #: bejmy/categories/initial.py:90
 msgid "Travel"
-msgstr ""
+msgstr "Podróżować"
 
 #: bejmy/categories/initial.py:91
 msgid "Air Travel"
-msgstr ""
+msgstr "Podróże powietrzne"
 
 #: bejmy/categories/initial.py:92
 msgid "Hotel"
-msgstr ""
+msgstr "Hotel"
 
 #: bejmy/categories/initial.py:93
 msgid "Rental Car & Taxi"
-msgstr ""
+msgstr "Wynajem samochodu i taksówki"
 
 #: bejmy/categories/initial.py:94
 msgid "Vacation"
-msgstr ""
+msgstr "Wakacje"
 
 #: bejmy/categories/initial.py:96
 msgid "Fees & Charges"
-msgstr ""
+msgstr "Opłaty i opłaty"
 
 #: bejmy/categories/initial.py:97
 msgid "Service Fee"
-msgstr ""
+msgstr "Opłata za usługę"
 
 #: bejmy/categories/initial.py:98
 msgid "Late Fee"
-msgstr ""
+msgstr "Opłata za opóźnienie"
 
 #: bejmy/categories/initial.py:99
 msgid "Finance Charge"
-msgstr ""
+msgstr "Opłata finansowa"
 
 #: bejmy/categories/initial.py:100
 msgid "ATM Fee"
-msgstr ""
+msgstr "Opłata za bankomat"
 
 #: bejmy/categories/initial.py:101
 msgid "Bank Fee"
-msgstr ""
+msgstr "Opłata bankowa"
 
 #: bejmy/categories/initial.py:102
 msgid "Trade Comissions"
-msgstr ""
+msgstr "Komisje handlowe"
 
 #: bejmy/categories/initial.py:104
 msgid "Business Services"
-msgstr ""
+msgstr "Usługi biznesowe"
 
 #: bejmy/categories/initial.py:105
 msgid "Advertising"
-msgstr ""
+msgstr "Reklama"
 
 #: bejmy/categories/initial.py:106
 msgid "Office Supplies"
-msgstr ""
+msgstr "Artykuły biurowe"
 
 #: bejmy/categories/initial.py:107
 msgid "Printing"
-msgstr ""
+msgstr "Druk"
 
 #: bejmy/categories/initial.py:108
 msgid "Shipping"
-msgstr ""
+msgstr "Wysyłka"
 
 #: bejmy/categories/initial.py:109
 msgid "Legal"
-msgstr ""
+msgstr "Prawny"
 
 #: bejmy/categories/initial.py:111
 msgid "Taxes"
-msgstr ""
+msgstr "Podatki"
 
 #: bejmy/categories/initial.py:112
 msgid "Federal Tax"
-msgstr ""
+msgstr "Podatek federalny"
 
 #: bejmy/categories/initial.py:113
 msgid "State Tax"
-msgstr ""
+msgstr "Podatek państwowy"
 
 #: bejmy/categories/initial.py:114
 msgid "Local Tax"
-msgstr ""
+msgstr "Lokalny podatek"
 
 #: bejmy/categories/initial.py:115
 msgid "Sales Tax"
-msgstr ""
+msgstr "Podatek od sprzedaży"
 
 #: bejmy/categories/initial.py:116
 msgid "Property Tax"
-msgstr ""
+msgstr "Podatek własnościowy"
 
 #: bejmy/categories/models.py:25 bejmy/transactions/models.py:57
 msgid "withdrawal"
-msgstr ""
+msgstr "wycofanie"
 
 #: bejmy/categories/models.py:26 bejmy/transactions/models.py:58
 msgid "deposit"
-msgstr ""
+msgstr "kaucja"
 
 #: bejmy/categories/models.py:33 bejmy/transactions/models.py:68
 msgid "category"
-msgstr ""
+msgstr "Kategoria"
 
 #: bejmy/settings.py:125
 msgid "English"
-msgstr ""
+msgstr "język angielski"
 
 #: bejmy/settings.py:126
 msgid "Polish"
-msgstr ""
+msgstr "Polskie"
 
 #: bejmy/transactions/apps.py:8 bejmy/transactions/models.py:107
 msgid "transactions"
-msgstr ""
+msgstr "Transakcji"
 
 #: bejmy/transactions/forms.py:39
 msgid "Account(s) not selected."
-msgstr ""
+msgstr "Konto nie zostało wybrane."
 
 #: bejmy/transactions/forms.py:42
 msgid "Source and destination accounts are the same."
-msgstr ""
+msgstr "Konta źródłowe i docelowe są takie same."
 
 #: bejmy/transactions/models.py:17
 msgid "source"
-msgstr ""
+msgstr "źródło"
 
 #: bejmy/transactions/models.py:24
 msgid "destination"
-msgstr ""
+msgstr "przeznaczenie"
 
 #: bejmy/transactions/models.py:31
 msgid "amount"
-msgstr ""
+msgstr "ilość"
 
 #: bejmy/transactions/models.py:37
 msgid "description"
-msgstr ""
+msgstr "opis"
 
 #: bejmy/transactions/models.py:43
 msgid "datetime"
-msgstr ""
+msgstr "Datetime"
 
 #: bejmy/transactions/models.py:47 bejmy/transactions/models.py:98
 msgid "balanced"
-msgstr ""
+msgstr "zrównoważony"
 
 #: bejmy/transactions/models.py:51
 msgid "balanced changed"
-msgstr ""
+msgstr "Zrównoważone zmiany"
 
 #: bejmy/transactions/models.py:59
 msgid "transfer"
-msgstr ""
+msgstr "transfer"
 
 #: bejmy/transactions/models.py:64
 msgid "transaction type"
-msgstr ""
+msgstr "typ transakcji"
 
 #: bejmy/transactions/models.py:74
 msgid "created by"
-msgstr ""
+msgstr "stworzone przez"
 
 #: bejmy/transactions/models.py:79
 msgid "created at"
-msgstr ""
+msgstr "Utworzony w"
 
 #: bejmy/transactions/models.py:83
 msgid "modified by"
-msgstr ""
+msgstr "modyfikowane przez"
 
 #: bejmy/transactions/models.py:88
 msgid "modified at"
-msgstr ""
+msgstr "Zmodyfikowano w"
 
 #: bejmy/transactions/models.py:96
 msgid "planned"
-msgstr ""
+msgstr "zaplanowany"
 
 #: bejmy/transactions/models.py:97
 msgid "registered"
-msgstr ""
+msgstr "zarejestrowany"
 
 #: bejmy/transactions/models.py:106
 msgid "transaction"
-msgstr ""
+msgstr "transakcja"
 
 #: bejmy/transactions/receivers.py:18
 msgid "Initial balance"
-msgstr ""
+msgstr "Początkowy bilans"
 
 #: bejmy/users/apps.py:8
 msgid "users"
-msgstr ""
+msgstr "Użytkowników"
+
