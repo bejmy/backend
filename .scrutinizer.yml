@@ -1,0 +1,25 @@
+build:
+    environment:
+        python: '3.6'
+    dependencies:
+        before:
+            - 'sudo apt-get install -y python-dev'
+            - 'pip install -e .[testing]'
+        override:
+            - true
+    tests:
+        override:
+            -
+                command: 'coverage python manage.py test'
+                coverage:
+                    file: '.coverage'
+                    format: 'py-cc'
+                    config_file: '.coveragerc'
+checks:
+    python:
+        code_rating: true
+        duplicate_code: true
+filter:
+    excluded_paths:
+        - 'docs/*'
+        - '*migrations*'
