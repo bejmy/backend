@@ -66,6 +66,7 @@ class Transaction(models.Model):
     category = TreeForeignKey(
         'categories.Category',
         verbose_name=_("category"),
+        blank=True,
         null=True
     )
     created_by = models.ForeignKey(
