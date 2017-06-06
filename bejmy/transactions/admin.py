@@ -8,11 +8,18 @@ from bejmy.transactions.forms import TransactionAdminForm
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
     list_display = (
-        '__str__',
+        'id',
+        'description',
+        'category',
+        'amount',
+        'balanced',
+        'user',
         'status',
         'transaction_type',
+        'source',
+        'destination',
     )
-    readonly_fields = [
+    readonly_fields = (
         'balanced_changed',
         'created_at',
         'created_by',
@@ -21,7 +28,21 @@ class TransactionAdmin(admin.ModelAdmin):
         'status',
         'transaction_type',
         'user',
-    ]
+    )
+    list_filter = (
+        'user',
+        'transaction_type',
+        'status',
+        'source',
+        'destination',
+    )
+    list_editable = (
+        'balanced',
+    )
+    search_fields = (
+        'description',
+    )
+    date_hierarchy = 'datetime'
 
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
@@ -37,3 +58,9 @@ class TransactionAdmin(admin.ModelAdmin):
             obj.user = request.user
             obj.created_by = request.user
         return super().save_model(request, obj, *args, **kwargs)
+
+    def get_queryset(self, request, *args, **kwargs):
+        queryset = super().get_queryset(request, *args, **kwargs)
+        if not request.user.is_superuser:
+            queryset = queryset.filter(user=request.user)
+        return queryset

@@ -26,7 +26,6 @@ testing_requires = [
     'flake8',
     'flake8-bugbear',
     'flake8-comprehensions',
-    'flake8-debugger',
     'flake8-docstrings',
     'flake8-string-format',
     'mccabe',
