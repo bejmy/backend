@@ -23,6 +23,10 @@ Bejmy Backend
    :target: https://codeclimate.com/github/bejmy/backend
    :alt: Issue Count
 
+.. image:: https://www.quantifiedcode.com/api/v1/project/617531defc114c628044d60bd972df4b/badge.svg
+  :target: https://www.quantifiedcode.com/app/project/617531defc114c628044d60bd972df4b
+  :alt: Code issues
+
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
 vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
