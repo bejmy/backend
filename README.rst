@@ -1,11 +1,11 @@
 Bejmy Backend
 =============
 
-.. image:: https://img.shields.io/coveralls/bejmy/backend.svg
-    :target: https://coveralls.io/r/bejmy/backend
-
 .. image:: https://img.shields.io/travis/bejmy/backend/master.svg
     :target: https://travis-ci.org/bejmy/backend
+
+.. image:: https://img.shields.io/coveralls/bejmy/backend/master.svg
+    :target: https://coveralls.io/r/bejmy/backend
 
 .. image:: https://readthedocs.org/projects/bejmy/badge/?version=latest
     :target: http://bejmy.readthedocs.io/en/latest/?badge=latest
@@ -26,6 +26,18 @@ Bejmy Backend
 .. image:: https://www.quantifiedcode.com/api/v1/project/617531defc114c628044d60bd972df4b/badge.svg
   :target: https://www.quantifiedcode.com/app/project/617531defc114c628044d60bd972df4b
   :alt: Code issues
+
+
+Develop
+-------
+
+.. image:: https://img.shields.io/travis/bejmy/backend/develop.svg
+    :target: https://travis-ci.org/bejmy/backend
+
+.. image:: https://img.shields.io/coveralls/bejmy/backend/develop.svg
+    :target: https://coveralls.io/r/bejmy/backend
+
+
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
