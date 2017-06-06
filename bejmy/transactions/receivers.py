@@ -20,7 +20,7 @@ def create_initial_balancing_transaction(sender, instance, created, **kwags):
     transaction.balanced_at = timezone.now()
 
     transaction.amount = abs(instance.balance_initial)
-    if instance.balance > 0:
+    if instance.balance_initial >= 0:
         transaction.destination = instance
     else:
         transaction.source = instance
