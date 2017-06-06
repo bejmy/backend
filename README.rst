@@ -27,6 +27,10 @@ Bejmy Backend
   :target: https://www.quantifiedcode.com/app/project/617531defc114c628044d60bd972df4b
   :alt: Code issues
 
+.. image:: https://requires.io/github/bejmy/backend/requirements.svg?branch=master
+     :target: https://requires.io/github/bejmy/backend/requirements/?branch=master
+     :alt: Requirements Status
+
 
 Develop
 -------
@@ -36,6 +40,10 @@ Develop
 
 .. image:: https://img.shields.io/coveralls/bejmy/backend/develop.svg
     :target: https://coveralls.io/r/bejmy/backend
+
+.. image:: https://requires.io/github/bejmy/backend/requirements.svg?branch=develop
+     :target: https://requires.io/github/bejmy/backend/requirements/?branch=develop
+     :alt: Requirements Status
 
 
 
