@@ -1,7 +1,9 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
 
 urlpatterns = [
+    # url(r'^sitemap\.xml$', sitemap, name='sitemap-xml'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^admin/', admin.site.urls),
 ]

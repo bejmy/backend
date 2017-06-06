@@ -1,0 +1,534 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-06 20:44+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: bejmy/accounts/apps.py:8
+msgid "accounts"
+msgstr ""
+
+#: bejmy/accounts/models.py:8 bejmy/categories/models.py:16
+#: bejmy/transactions/models.py:12
+msgid "user"
+msgstr ""
+
+#: bejmy/accounts/models.py:12 bejmy/categories/models.py:20
+msgid "name"
+msgstr ""
+
+#: bejmy/accounts/models.py:18
+msgid "balance initial"
+msgstr ""
+
+#: bejmy/accounts/models.py:24
+msgid "balance"
+msgstr ""
+
+#: bejmy/accounts/models.py:30
+msgid "balance planned"
+msgstr ""
+
+#: bejmy/accounts/models.py:36
+msgid "balance registered"
+msgstr ""
+
+#: bejmy/categories/apps.py:9 bejmy/categories/models.py:34
+msgid "categories"
+msgstr ""
+
+#: bejmy/categories/initial.py:4
+msgid "Income"
+msgstr ""
+
+#: bejmy/categories/initial.py:5
+msgid "Paycheck"
+msgstr ""
+
+#: bejmy/categories/initial.py:6
+msgid "Investment"
+msgstr ""
+
+#: bejmy/categories/initial.py:7
+msgid "Returned Purchase"
+msgstr ""
+
+#: bejmy/categories/initial.py:8
+msgid "Bonus"
+msgstr ""
+
+#: bejmy/categories/initial.py:9
+msgid "Interest Income"
+msgstr ""
+
+#: bejmy/categories/initial.py:10
+msgid "Reimbursement"
+msgstr ""
+
+#: bejmy/categories/initial.py:11
+msgid "Rental Income"
+msgstr ""
+
+#: bejmy/categories/initial.py:16
+msgid "Entertainment"
+msgstr ""
+
+#: bejmy/categories/initial.py:17
+msgid "Arts"
+msgstr ""
+
+#: bejmy/categories/initial.py:18
+msgid "Music"
+msgstr ""
+
+#: bejmy/categories/initial.py:19
+msgid "Movies & DVDs"
+msgstr ""
+
+#: bejmy/categories/initial.py:20
+msgid "Newspaper & Magazines"
+msgstr ""
+
+#: bejmy/categories/initial.py:22
+msgid "Education"
+msgstr ""
+
+#: bejmy/categories/initial.py:23
+msgid "Tuition"
+msgstr ""
+
+#: bejmy/categories/initial.py:24
+msgid "Student Loan"
+msgstr ""
+
+#: bejmy/categories/initial.py:25
+msgid "Books & Supplies"
+msgstr ""
+
+#: bejmy/categories/initial.py:27
+msgid "Shopping"
+msgstr ""
+
+#: bejmy/categories/initial.py:28
+msgid "Clothing"
+msgstr ""
+
+#: bejmy/categories/initial.py:29
+msgid "Books"
+msgstr ""
+
+#: bejmy/categories/initial.py:30
+msgid "Electronics & Software"
+msgstr ""
+
+#: bejmy/categories/initial.py:31
+msgid "Hobbies"
+msgstr ""
+
+#: bejmy/categories/initial.py:32
+msgid "Sporting Goods"
+msgstr ""
+
+#: bejmy/categories/initial.py:34
+msgid "Personal Care"
+msgstr ""
+
+#: bejmy/categories/initial.py:35
+msgid "Laundry"
+msgstr ""
+
+#: bejmy/categories/initial.py:36
+msgid "Hair"
+msgstr ""
+
+#: bejmy/categories/initial.py:37
+msgid "Spa & Massage"
+msgstr ""
+
+#: bejmy/categories/initial.py:39
+msgid "Health & Fitness"
+msgstr ""
+
+#: bejmy/categories/initial.py:40
+msgid "Dentist"
+msgstr ""
+
+#: bejmy/categories/initial.py:41
+msgid "Doctor"
+msgstr ""
+
+#: bejmy/categories/initial.py:42
+msgid "Eyecare"
+msgstr ""
+
+#: bejmy/categories/initial.py:43
+msgid "Pharmacy"
+msgstr ""
+
+#: bejmy/categories/initial.py:44
+msgid "Health Insurance"
+msgstr ""
+
+#: bejmy/categories/initial.py:45
+msgid "Gym"
+msgstr ""
+
+#: bejmy/categories/initial.py:46
+msgid "Sports"
+msgstr ""
+
+#: bejmy/categories/initial.py:48
+msgid "Kids"
+msgstr ""
+
+#: bejmy/categories/initial.py:49
+msgid "Kids Activites"
+msgstr ""
+
+#: bejmy/categories/initial.py:50
+msgid "Allowance"
+msgstr ""
+
+#: bejmy/categories/initial.py:51
+msgid "Baby Supplies"
+msgstr ""
+
+#: bejmy/categories/initial.py:52
+msgid "Babysitter & Daycare"
+msgstr ""
+
+#: bejmy/categories/initial.py:53
+msgid "Child Support"
+msgstr ""
+
+#: bejmy/categories/initial.py:54
+msgid "Toys"
+msgstr ""
+
+#: bejmy/categories/initial.py:56
+msgid "Food & Dining"
+msgstr ""
+
+#: bejmy/categories/initial.py:57
+msgid "Groceries"
+msgstr ""
+
+#: bejmy/categories/initial.py:58
+msgid "Coffee shops"
+msgstr ""
+
+#: bejmy/categories/initial.py:59
+msgid "Fast Food"
+msgstr ""
+
+#: bejmy/categories/initial.py:60
+msgid "Restaurants"
+msgstr ""
+
+#: bejmy/categories/initial.py:61
+msgid "Alchohol & Bars"
+msgstr ""
+
+#: bejmy/categories/initial.py:63
+msgid "Gifts & Donations"
+msgstr ""
+
+#: bejmy/categories/initial.py:64
+msgid "Gift"
+msgstr ""
+
+#: bejmy/categories/initial.py:65
+msgid "Charity"
+msgstr ""
+
+#: bejmy/categories/initial.py:66
+msgid "Church"
+msgstr ""
+
+#: bejmy/categories/initial.py:68
+msgid "Investments"
+msgstr ""
+
+#: bejmy/categories/initial.py:69
+msgid "Deposit"
+msgstr ""
+
+#: bejmy/categories/initial.py:70
+msgid "Withdrawal"
+msgstr ""
+
+#: bejmy/categories/initial.py:71
+msgid "Dividends & Cap Gains"
+msgstr ""
+
+#: bejmy/categories/initial.py:72
+msgid "Buy"
+msgstr ""
+
+#: bejmy/categories/initial.py:73
+msgid "Sell"
+msgstr ""
+
+#: bejmy/categories/initial.py:75
+msgid "Bills & Utilities"
+msgstr ""
+
+#: bejmy/categories/initial.py:76
+msgid "Television"
+msgstr ""
+
+#: bejmy/categories/initial.py:77
+msgid "Home Phone"
+msgstr ""
+
+#: bejmy/categories/initial.py:78
+msgid "Internet"
+msgstr ""
+
+#: bejmy/categories/initial.py:79
+msgid "Mobile Phone"
+msgstr ""
+
+#: bejmy/categories/initial.py:80
+msgid "Utilities"
+msgstr ""
+
+#: bejmy/categories/initial.py:82
+msgid "Auto & Transport"
+msgstr ""
+
+#: bejmy/categories/initial.py:83
+msgid "Gas & Fuel"
+msgstr ""
+
+#: bejmy/categories/initial.py:84
+msgid "Parking"
+msgstr ""
+
+#: bejmy/categories/initial.py:85 bejmy/categories/initial.py:88
+msgid "Service & Auto Parts"
+msgstr ""
+
+#: bejmy/categories/initial.py:86
+msgid "Auto Payment"
+msgstr ""
+
+#: bejmy/categories/initial.py:87
+msgid "Auto Insurance"
+msgstr ""
+
+#: bejmy/categories/initial.py:90
+msgid "Travel"
+msgstr ""
+
+#: bejmy/categories/initial.py:91
+msgid "Air Travel"
+msgstr ""
+
+#: bejmy/categories/initial.py:92
+msgid "Hotel"
+msgstr ""
+
+#: bejmy/categories/initial.py:93
+msgid "Rental Car & Taxi"
+msgstr ""
+
+#: bejmy/categories/initial.py:94
+msgid "Vacation"
+msgstr ""
+
+#: bejmy/categories/initial.py:96
+msgid "Fees & Charges"
+msgstr ""
+
+#: bejmy/categories/initial.py:97
+msgid "Service Fee"
+msgstr ""
+
+#: bejmy/categories/initial.py:98
+msgid "Late Fee"
+msgstr ""
+
+#: bejmy/categories/initial.py:99
+msgid "Finance Charge"
+msgstr ""
+
+#: bejmy/categories/initial.py:100
+msgid "ATM Fee"
+msgstr ""
+
+#: bejmy/categories/initial.py:101
+msgid "Bank Fee"
+msgstr ""
+
+#: bejmy/categories/initial.py:102
+msgid "Trade Comissions"
+msgstr ""
+
+#: bejmy/categories/initial.py:104
+msgid "Business Services"
+msgstr ""
+
+#: bejmy/categories/initial.py:105
+msgid "Advertising"
+msgstr ""
+
+#: bejmy/categories/initial.py:106
+msgid "Office Supplies"
+msgstr ""
+
+#: bejmy/categories/initial.py:107
+msgid "Printing"
+msgstr ""
+
+#: bejmy/categories/initial.py:108
+msgid "Shipping"
+msgstr ""
+
+#: bejmy/categories/initial.py:109
+msgid "Legal"
+msgstr ""
+
+#: bejmy/categories/initial.py:111
+msgid "Taxes"
+msgstr ""
+
+#: bejmy/categories/initial.py:112
+msgid "Federal Tax"
+msgstr ""
+
+#: bejmy/categories/initial.py:113
+msgid "State Tax"
+msgstr ""
+
+#: bejmy/categories/initial.py:114
+msgid "Local Tax"
+msgstr ""
+
+#: bejmy/categories/initial.py:115
+msgid "Sales Tax"
+msgstr ""
+
+#: bejmy/categories/initial.py:116
+msgid "Property Tax"
+msgstr ""
+
+#: bejmy/categories/models.py:25 bejmy/transactions/models.py:57
+msgid "withdrawal"
+msgstr ""
+
+#: bejmy/categories/models.py:26 bejmy/transactions/models.py:58
+msgid "deposit"
+msgstr ""
+
+#: bejmy/categories/models.py:33 bejmy/transactions/models.py:68
+msgid "category"
+msgstr ""
+
+#: bejmy/settings.py:125
+msgid "English"
+msgstr ""
+
+#: bejmy/settings.py:126
+msgid "Polish"
+msgstr ""
+
+#: bejmy/transactions/apps.py:8 bejmy/transactions/models.py:107
+msgid "transactions"
+msgstr ""
+
+#: bejmy/transactions/forms.py:39
+msgid "Account(s) not selected."
+msgstr ""
+
+#: bejmy/transactions/forms.py:42
+msgid "Source and destination accounts are the same."
+msgstr ""
+
+#: bejmy/transactions/models.py:17
+msgid "source"
+msgstr ""
+
+#: bejmy/transactions/models.py:24
+msgid "destination"
+msgstr ""
+
+#: bejmy/transactions/models.py:31
+msgid "amount"
+msgstr ""
+
+#: bejmy/transactions/models.py:37
+msgid "description"
+msgstr ""
+
+#: bejmy/transactions/models.py:43
+msgid "datetime"
+msgstr ""
+
+#: bejmy/transactions/models.py:47 bejmy/transactions/models.py:98
+msgid "balanced"
+msgstr ""
+
+#: bejmy/transactions/models.py:51
+msgid "balanced changed"
+msgstr ""
+
+#: bejmy/transactions/models.py:59
+msgid "transfer"
+msgstr ""
+
+#: bejmy/transactions/models.py:64
+msgid "transaction type"
+msgstr ""
+
+#: bejmy/transactions/models.py:74
+msgid "created by"
+msgstr ""
+
+#: bejmy/transactions/models.py:79
+msgid "created at"
+msgstr ""
+
+#: bejmy/transactions/models.py:83
+msgid "modified by"
+msgstr ""
+
+#: bejmy/transactions/models.py:88
+msgid "modified at"
+msgstr ""
+
+#: bejmy/transactions/models.py:96
+msgid "planned"
+msgstr ""
+
+#: bejmy/transactions/models.py:97
+msgid "registered"
+msgstr ""
+
+#: bejmy/transactions/models.py:106
+msgid "transaction"
+msgstr ""
+
+#: bejmy/transactions/receivers.py:18
+msgid "Initial balance"
+msgstr ""
+
+#: bejmy/users/apps.py:8
+msgid "users"
+msgstr ""
