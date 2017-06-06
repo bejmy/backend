@@ -2,9 +2,11 @@ from django.contrib import admin
 
 from bejmy.categories.models import Category
 
+from mptt.admin import MPTTModelAdmin
+
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(MPTTModelAdmin):
     list_display = (
         'name',
         'user',
