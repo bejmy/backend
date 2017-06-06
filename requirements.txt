@@ -7,3 +7,4 @@ gunicorn==19.7.1
 dj-database-url==0.4.2
 whitenoise==3.3.0
 psycopg2==2.7.1
+django-model-utils-3.0.0
