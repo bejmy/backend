@@ -23,6 +23,6 @@ class CategoryAdmin(MPTTModelAdmin):
 
     def get_queryset(self, request, *args, **kwargs):
         queryset = super().get_queryset(request, *args, **kwargs)
-        if not request.user.is_superuser():
+        if not request.user.is_superuser:
             queryset = queryset.filter(user=request.user)
         return queryset
