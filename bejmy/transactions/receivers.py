@@ -88,7 +88,9 @@ def update_account_balance_on_delete(sender, instance, **kwargs):
 def register_planned_transactions(sender, **kwargs):
     # poor asynchronous task execution :D
     now = timezone.now()
-    queryset = Transaction.objects.filter(status=Transaction.STATUS_PLANNED, datetime__lte=now)
+    queryset = Transaction.objects.filter(
+        status=Transaction.STATUS_PLANNED,
+        datetime__lte=now)
     if queryset.exists():
         for transaction in queryset.all():
             print(transaction)
