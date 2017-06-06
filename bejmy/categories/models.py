@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Label(MPTTModel):
+class Category(MPTTModel):
     parent = TreeForeignKey(
         'self',
         null=True,
@@ -30,8 +30,8 @@ class Label(MPTTModel):
     )
 
     class Meta:
-        verbose_name = _("label")
-        verbose_name_plural = _("labels")
+        verbose_name = _("category")
+        verbose_name_plural = _("categories")
 
     def __str__(self):
         return f"{self.name}"

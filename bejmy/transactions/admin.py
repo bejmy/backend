@@ -1,24 +1,39 @@
 from django.contrib import admin
 
 from bejmy.transactions.models import Transaction
-from bejmy.accounts.models import Account
-from bejmy.labels.models import Label
-from .forms import TransactionAdminForm
+from bejmy.transactions.forms import TransactionAdminForm
 
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
-    readonly_fields = ['user', 'transaction_type']
+    list_display = (
+        '__str__',
+        'status',
+        'transaction_type',
+    )
+    readonly_fields = [
+        'balanced_changed',
+        'created_at',
+        'created_by',
+        'modified_at',
+        'modified_by',
+        'status',
+        'transaction_type',
+        'user',
+    ]
 
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
         form.user = request.user
-        for field in ('source', 'destination', 'label'):
+        for field in ('source', 'destination', 'category'):
             form.base_fields[field].widget.can_add_related = False
             form.base_fields[field].widget.can_change_related = False
         return form
 
     def save_model(self, request, obj, *args, **kwargs):
-        obj.user = request.user
+        obj.modified_by = request.user
+        if not obj.pk:
+            obj.user = request.user
+            obj.created_by = request.user
         return super().save_model(request, obj, *args, **kwargs)

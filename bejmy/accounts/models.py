@@ -11,17 +11,33 @@ class Account(models.Model):
         max_length=255,
         verbose_name=_("name")
     )
+    balance_initial = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0,
+        verbose_name=_("balance initial")
+    )
     balance = models.DecimalField(
         max_digits=12,
         decimal_places=2,
         default=0,
         verbose_name=_("balance")
     )
+    balance_planned = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0,
+        verbose_name=_("balance planned")
+    )
+    balance_registered = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0,
+        verbose_name=_("balance registered")
+    )
 
     def __str__(self):
         return f"{self.name} ({self.balance})"
 
-    @property
-    def transactions(self):
-        # TODO
-        pass
+    def save(self, *args, **kwargs):
+        return super().save(*args, **kwargs)

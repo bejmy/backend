@@ -7,14 +7,15 @@ install:
 - pip install -e .[testing]
 - pip install coveralls
 - pip install codeclimate-test-reporter
+before_script: flake8
 script: coverage run manage.py test
 after_success:
 - coveralls
 - codeclimate-test-reporter
-deploy:
-  provider: heroku
-  api_key:
-    secure: upTbmS6grpPDtPAdm/w2Hxj0ELArirYE8vZiutBL5SdH7+ZgfECsho4lsyvTdSbwKcDd54dXIPicIwC6rrfhTUDPh0ZdYcptYO4DEMlRRLoc0x94FlZ0Z7v1FMYZo09gQBoYNkrvve5Hts1FG/GHPzDzT9EVhbegIhD0F+0r6x9Z7hlLERX9qEtvgr9qsAG1rAKr0fPEbBswx13WRMim/ePQdrBEzpEZTQgUyz0+r3yFYY9Gql5qly3HT6ko6kQ58TyBJbKLDfb8Bbbh+b4ligBdnf1pS1GE16ZHw9p3NxNqNUZAEQwzj+zupH62jEJhbtrMpn6IlSLx96WR5vnkNfuxSUjPJ3zy8GnPiXp4gA2dE1MNmbt2A4uPp2G4aGMcP+qJMl1pc3Fh7BkfBbO+IR+HA8niCKaj5SuO4wZIbzGM7OyC/3NI6suzP4OeVSa8DxKwPbkeUU7ANADdoqmLCgO8dA+/PE00qAhOdqJXGCf6z2dDReWrCNFkBxbtXedDlZA06pSXUN8q9aM17VnUQPZIq/8NHCkNR27O4BtMf+3zmsOee2QiogoaMd8nec6K/7BU5eunStA7lixRnSvy6904GMSAO/YSUaWZwA4Oc/jZzrdt0Wy5JRINDWWswcV7aLdFIJY5mDtDFlTgQRYxEEdlD7D02rA+ncmVxyIPxec=
-  app: bejmy
-  on:
-    branch: master
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: upTbmS6grpPDtPAdm/w2Hxj0ELArirYE8vZiutBL5SdH7+ZgfECsho4lsyvTdSbwKcDd54dXIPicIwC6rrfhTUDPh0ZdYcptYO4DEMlRRLoc0x94FlZ0Z7v1FMYZo09gQBoYNkrvve5Hts1FG/GHPzDzT9EVhbegIhD0F+0r6x9Z7hlLERX9qEtvgr9qsAG1rAKr0fPEbBswx13WRMim/ePQdrBEzpEZTQgUyz0+r3yFYY9Gql5qly3HT6ko6kQ58TyBJbKLDfb8Bbbh+b4ligBdnf1pS1GE16ZHw9p3NxNqNUZAEQwzj+zupH62jEJhbtrMpn6IlSLx96WR5vnkNfuxSUjPJ3zy8GnPiXp4gA2dE1MNmbt2A4uPp2G4aGMcP+qJMl1pc3Fh7BkfBbO+IR+HA8niCKaj5SuO4wZIbzGM7OyC/3NI6suzP4OeVSa8DxKwPbkeUU7ANADdoqmLCgO8dA+/PE00qAhOdqJXGCf6z2dDReWrCNFkBxbtXedDlZA06pSXUN8q9aM17VnUQPZIq/8NHCkNR27O4BtMf+3zmsOee2QiogoaMd8nec6K/7BU5eunStA7lixRnSvy6904GMSAO/YSUaWZwA4Oc/jZzrdt0Wy5JRINDWWswcV7aLdFIJY5mDtDFlTgQRYxEEdlD7D02rA+ncmVxyIPxec=
+#   app: bejmy
+#   on:
+#     branch: master

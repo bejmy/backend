@@ -1,11 +1,9 @@
-from decimal import Decimal
-
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from model_utils.fields import MonitorField
 
 from mptt.fields import TreeForeignKey
-
-from bejmy.accounts.models import Account
 
 
 class Transaction(models.Model):
@@ -38,18 +36,19 @@ class Transaction(models.Model):
         blank=True,
         verbose_name=_("description")
     )
-    STATUS_PLANNED = 1
-    STATUS_REGISTERED = 2
-    STATUS_BALANCED = 3
-    STATUS_DEFAULT = STATUS_REGISTERED
-    STATUS_CHOICES = (
-        (STATUS_PLANNED, _("planned")),
-        (STATUS_REGISTERED, _("registered")),
-        (STATUS_BALANCED, _("balanced")),
+    datetime = models.DateTimeField(
+        null=True,
+        blank=True,
+        default=timezone.now,
+        verbose_name=_("datetime"),
     )
-    status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES,
-        default=STATUS_DEFAULT
+    balanced = models.BooleanField(
+        default=False,
+        verbose_name=_("balanced")
+    )
+    balanced_changed = MonitorField(
+        monitor='balanced',
+        verbose_name=_("balanced changed"),
     )
     TRANSACTION_WITHDRAWAL = 1
     TRANSACTION_DEPOSIT = 2
@@ -64,10 +63,42 @@ class Transaction(models.Model):
         choices=TRANSACTION_CHOICES,
         verbose_name=_("transaction type")
     )
-    label = TreeForeignKey(
-        'labels.Label',
-        verbose_name=_("label"),
+    category = TreeForeignKey(
+        'categories.Category',
+        verbose_name=_("category"),
         null=True
+    )
+    created_by = models.ForeignKey(
+        'users.User',
+        verbose_name=_('created by'),
+        null=True,
+        related_name='transactions_created_by',
+    )
+    created_at = models.DateTimeField(
+        verbose_name=_('created at')
+    )
+    modified_by = models.ForeignKey(
+        'users.User',
+        verbose_name=_('modified by'),
+        null=True,
+        related_name='transactions_modified_by',
+    )
+    modified_at = models.DateTimeField(
+        verbose_name=_('modified at'),
+    )
+    # order is very important
+    STATUS_PLANNED = 1
+    STATUS_REGISTERED = 2
+    STATUS_BALANCED = 3
+    STATUS_DEFAULT = STATUS_REGISTERED
+    STATUS_CHOICES = (
+        (STATUS_PLANNED, _("planned")),
+        (STATUS_REGISTERED, _("registered")),
+        (STATUS_BALANCED, _("balanced")),
+    )
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_CHOICES,
+        default=STATUS_DEFAULT
     )
 
     class Meta:
@@ -75,22 +106,34 @@ class Transaction(models.Model):
         verbose_name_plural = _("transactions")
 
     def __str__(self):
-        return f"{self.description or self.label} ({self.amount})"
+        return f"{self.description or self.category} ({self.amount})"
+
+    def get_transaction_type(self):
+        if self.source and self.destination:
+            transaction_type = Transaction.TRANSACTION_TRANSFER
+        elif self.source:
+            transaction_type = Transaction.TRANSACTION_WITHDRAWAL
+        elif self.destination:
+            transaction_type = Transaction.TRANSACTION_DEPOSIT
+        return transaction_type
 
     def save(self, *args, **kwargs):
-        if self.source and self.destination:
-            self.transaction_type = Transaction.TRANSACTION_TRANSFER
-        elif self.source:
-            self.transaction_type = Transaction.TRANSACTION_WITHDRAWAL
-        elif self.destination:
-            self.transaction_type = Transaction.TRANSACTION_DEPOSIT
+
+        # set created and modified times
+        now = timezone.now()
+        if not self.id:
+            self.created_at = now
+        self.modified_at = now
+
+        self.transaction_type = self.get_transaction_type()
+        self.status = self.get_status()
+
         super().save(*args, **kwargs)
 
-    @property
-    def accounts(self):
-        pks = []
-        if self.source:
-            pks.append(self.source)
-        if self.destination:
-            pks.append(self.destination)
-        return Account.objects.filter(pk__in=pks)
+    def get_status(self):
+        if self.balanced:
+            return self.STATUS_BALANCED
+        elif self.datetime and self.datetime > timezone.now():
+            return self.STATUS_PLANNED
+        else:
+            return self.STATUS_REGISTERED
