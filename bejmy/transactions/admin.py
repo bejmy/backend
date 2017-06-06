@@ -8,11 +8,17 @@ from bejmy.transactions.forms import TransactionAdminForm
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
     list_display = (
-        '__str__',
+        'description',
+        'category',
+        'amount',
+        'balanced',
+        'user',
         'status',
         'transaction_type',
+        'source',
+        'destination',
     )
-    readonly_fields = [
+    readonly_fields = (
         'balanced_changed',
         'created_at',
         'created_by',
@@ -21,7 +27,21 @@ class TransactionAdmin(admin.ModelAdmin):
         'status',
         'transaction_type',
         'user',
-    ]
+    )
+    list_filter = (
+        'user',
+        'transaction_type',
+        'status',
+        'source',
+        'destination',
+    )
+    list_editable = (
+        'balanced',
+    )
+    search_fields = (
+        'description',
+    )
+    date_hierarchy = 'datetime'
 
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
