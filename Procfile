@@ -1,2 +1,2 @@
-release: python manage.py migrate --no-input && python manage.py compilemessages
+release: python manage.py migrate --no-input
 web: gunicorn bejmy.wsgi
