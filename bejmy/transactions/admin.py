@@ -7,7 +7,21 @@ from bejmy.transactions.forms import TransactionAdminForm
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
-    readonly_fields = ['user', 'transaction_type']
+    list_display = (
+        '__str__',
+        'status',
+        'transaction_type',
+    )
+    readonly_fields = [
+        'balanced_changed',
+        'created_at',
+        'created_by',
+        'modified_at',
+        'modified_by',
+        'status',
+        'transaction_type',
+        'user',
+    ]
 
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
@@ -18,5 +32,8 @@ class TransactionAdmin(admin.ModelAdmin):
         return form
 
     def save_model(self, request, obj, *args, **kwargs):
-        obj.user = request.user
+        obj.modified_by = request.user
+        if not obj.pk:
+            obj.user = request.user
+            obj.created_by = request.user
         return super().save_model(request, obj, *args, **kwargs)

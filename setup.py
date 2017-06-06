@@ -18,6 +18,7 @@ install_requires = [
     'django-mptt',
     'dj-database-url',
     'whitenoise',
+    'django-model-utils',
 ]
 
 testing_requires = [

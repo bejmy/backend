@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from model_utils.fields import MonitorField
 
 from mptt.fields import TreeForeignKey
 
@@ -35,18 +36,19 @@ class Transaction(models.Model):
         blank=True,
         verbose_name=_("description")
     )
-    STATUS_PLANNED = 1
-    STATUS_REGISTERED = 2
-    STATUS_BALANCED = 3
-    STATUS_DEFAULT = STATUS_REGISTERED
-    STATUS_CHOICES = (
-        (STATUS_PLANNED, _("planned")),
-        (STATUS_REGISTERED, _("registered")),
-        (STATUS_BALANCED, _("balanced")),
+    datetime = models.DateTimeField(
+        null=True,
+        blank=True,
+        default=timezone.now,
+        verbose_name=_("datetime"),
     )
-    status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES,
-        default=STATUS_DEFAULT
+    balanced = models.BooleanField(
+        default=False,
+        verbose_name=_("balanced")
+    )
+    balanced_changed = MonitorField(
+        monitor='balanced',
+        verbose_name=_("balanced changed"),
     )
     TRANSACTION_WITHDRAWAL = 1
     TRANSACTION_DEPOSIT = 2
@@ -66,19 +68,37 @@ class Transaction(models.Model):
         verbose_name=_("category"),
         null=True
     )
-    # created_by = models.ForeignKey(
-    #     'users.User',
-    #     verbose_name=_('created by')
-    # )
+    created_by = models.ForeignKey(
+        'users.User',
+        verbose_name=_('created by'),
+        null=True,
+        related_name='transactions_created_by',
+    )
     created_at = models.DateTimeField(
         verbose_name=_('created at')
     )
-    # modified_by = models.ForeignKey(
-    #     'users.User',
-    #     verbose_name=_('modified by'),
-    # )
+    modified_by = models.ForeignKey(
+        'users.User',
+        verbose_name=_('modified by'),
+        null=True,
+        related_name='transactions_modified_by',
+    )
     modified_at = models.DateTimeField(
         verbose_name=_('modified at'),
+    )
+    # order is very important
+    STATUS_PLANNED = 1
+    STATUS_REGISTERED = 2
+    STATUS_BALANCED = 3
+    STATUS_DEFAULT = STATUS_REGISTERED
+    STATUS_CHOICES = (
+        (STATUS_PLANNED, _("planned")),
+        (STATUS_REGISTERED, _("registered")),
+        (STATUS_BALANCED, _("balanced")),
+    )
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_CHOICES,
+        default=STATUS_DEFAULT
     )
 
     class Meta:
@@ -100,9 +120,20 @@ class Transaction(models.Model):
     def save(self, *args, **kwargs):
 
         # set created and modified times
+        now = timezone.now()
         if not self.id:
-            self.created_at = timezone.now()
-        self.modified_at = timezone.now()
+            self.created_at = now
+        self.modified_at = now
 
         self.transaction_type = self.get_transaction_type()
+        self.status = self.get_status()
+
         super().save(*args, **kwargs)
+
+    def get_status(self):
+        if self.balanced:
+            return self.STATUS_BALANCED
+        elif self.datetime and self.datetime > timezone.now():
+            return self.STATUS_PLANNED
+        else:
+            return self.STATUS_REGISTERED
