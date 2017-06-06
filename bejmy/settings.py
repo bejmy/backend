@@ -61,7 +61,9 @@ ROOT_URLCONF = 'bejmy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,10 +71,36 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
             ],
         },
     },
 ]
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             # os.path.join(BASE_DIR, 'templates'),
+#         ],
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.i18n',
+#                 'django.template.context_processors.media',
+#                 'django.template.context_processors.static',
+#                 'django.template.context_processors.tz',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#             'loaders': [
+#                 # insert your TEMPLATE_LOADERS here
+#             ]
+#         },
+#     },
+# ]
 
 WSGI_APPLICATION = 'bejmy.wsgi.application'
 
@@ -123,8 +151,8 @@ USE_I18N = True
 USE_L10N = True
 
 LANGUAGES = [
-    ('en', _('English')),
     ('pl', _('Polish')),
+    ('en', _('English')),
 ]
 
 LOCALE_PATHS = (
