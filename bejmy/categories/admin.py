@@ -17,3 +17,4 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = (
         'name',
     )
+    raw_id_fields = ('parent',)
