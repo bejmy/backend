@@ -107,7 +107,8 @@ class Transaction(models.Model):
         verbose_name_plural = _("transactions")
 
     def __str__(self):
-        return f"{self.description or self.category} ({self.amount})"
+        display = self.description or self.category or self.transaction_type
+        return f"{display} ({self.amount})"
 
     def get_transaction_type(self):
         if self.source and self.destination:
