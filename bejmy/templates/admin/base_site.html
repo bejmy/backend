@@ -2,6 +2,17 @@
 {% load i18n %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block extrahead %}
+<link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/static/favicons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#2e7c31">
+<meta name="apple-mobile-web-app-title" content="Bejmy">
+<meta name="application-name" content="Bejmy">
+<meta name="theme-color" content="#2e7c31">
+{% endblock %}
 
 {% block branding %}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
