@@ -1,7 +1,30 @@
 from django.contrib import admin
 
+from mptt.admin import TreeRelatedFieldListFilter
+
 from bejmy.transactions.models import Transaction
 from bejmy.transactions.forms import TransactionAdminForm
+
+
+class CategoryFilter(TreeRelatedFieldListFilter):
+    mptt_level_indent = 3
+    template = 'admin/filter_dropdown.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # fix
+        self.lookup_kwarg = self.changed_lookup_kwarg
+
+    def field_choices(self, field, request, model_admin):
+        """Use existing `padding_style` as prefix for select options."""
+        field.rel.limit_choices_to = {'user': request.user}
+        choices = []
+        original_choices = super().field_choices(field, request, model_admin)
+        for pk, val, padding_style in original_choices:
+            a = padding_style.index(':') + 1
+            b = padding_style.index('px')
+            choices.append((pk, val, '-' * int(padding_style[a:b])))
+        return choices
 
 
 @admin.register(Transaction)
@@ -35,12 +58,15 @@ class TransactionAdmin(admin.ModelAdmin):
         'user',
     )
     list_filter = (
-        'user',
+        ('category', CategoryFilter),
+        'tags',
         'transaction_type',
         'status',
         'source',
         'destination',
+        'user',
     )
+
     list_editable = (
         'balanced',
     )
