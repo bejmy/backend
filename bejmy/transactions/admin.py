@@ -49,6 +49,33 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     date_hierarchy = 'datetime'
 
+    fieldsets = (
+        (None, {
+            'fields': (
+                'source',
+                'destination',
+                'amount',
+                'description',
+                'datetime',
+                'balanced',
+                'category',
+                'tags',
+            )
+        }),
+        ('Info', {
+            'fields': (
+                'status',
+                'transaction_type',
+                'user',
+                'balanced_changed',
+                'created_at',
+                'created_by',
+                'modified_at',
+                'modified_by',
+            ),
+        }),
+    )
+
     def tag_list(self, obj):
         return u", ".join(o.name for o in obj.tags.all())
 
