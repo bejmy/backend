@@ -3,11 +3,11 @@
 <h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
 <ul>
   <li>
-<select onChange="document.location.href=this.value;">
-{% for choice in choices %}
-    <option{% if choice.selected %} selected{% endif %} value="{{ choice.query_string|iriencode }}">
-    {{ choice.padding_style }} {{ choice.display }}
-    </option>
-{% endfor %}
-</select>
+    <select onChange="document.location.href=this.value;">
+      {% for choice in choices %}
+        <option{% if choice.selected %} selected{% endif %} value="{{ choice.query_string|iriencode }}">
+          {{ choice.padding_style }} {{ choice.display }}
+        </option>
+      {% endfor %}
+    </select>
   </li></ul>
