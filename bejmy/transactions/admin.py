@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.db.models import DecimalField, Sum
 from django.db.models.functions import Coalesce
+from django.utils.translation import ugettext as _
 
 from mptt.admin import TreeRelatedFieldListFilter
 
@@ -47,16 +48,16 @@ class TransactionChangeList(ChangeList):
 
     def get_summary(self):
         queries = {
-            'absolute': {},
-            'balanced': {'status': Transaction.STATUS_BALANCED},
-            'registered': {'status': Transaction.STATUS_REGISTERED},
-            'planned': {'status': Transaction.STATUS_PLANNED},
+            _('Absolute'): {},
+            _('Balanced'): {'status': Transaction.STATUS_BALANCED},
+            _('Registered'): {'status': Transaction.STATUS_REGISTERED},
+            _('Planned'): {'status': Transaction.STATUS_PLANNED},
         }
         self.summary = []
         for name, filters in queries.items():
             self.summary.append(self._get_single_summary(name, **filters))
 
-    def _get_single_summary(self, name='absolute', **extra_filters):
+    def _get_single_summary(self, name, **extra_filters):
         summary = {}
         summary['name'] = name
         query = {
