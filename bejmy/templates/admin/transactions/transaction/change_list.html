@@ -9,8 +9,11 @@
 {{ block.super }}
 {% endblock %}
 
-{% block search %}
+{#% block search %#}
+{% block pagination %}
+{{ block.super }}
 <div class="xfull">
+  <h2>Summary</h2>
   <table border="0" cellspacing="5" cellpadding="5">
     <thead>
     <tr>
@@ -65,5 +68,4 @@
   </table>
   <p></p>
 </div>
-{{ block.super }}
 {% endblock %}

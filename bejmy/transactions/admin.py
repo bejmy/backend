@@ -48,10 +48,10 @@ class TransactionChangeList(ChangeList):
 
     def get_summary(self):
         queries = {
-            _('Absolute'): {},
-            _('Balanced'): {'status': Transaction.STATUS_BALANCED},
-            _('Registered'): {'status': Transaction.STATUS_REGISTERED},
             _('Planned'): {'status': Transaction.STATUS_PLANNED},
+            _('Registered'): {'status': Transaction.STATUS_REGISTERED},
+            _('Balanced'): {'status': Transaction.STATUS_BALANCED},
+            _('Total'): {},
         }
         self.summary = []
         for name, filters in queries.items():
