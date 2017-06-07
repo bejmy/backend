@@ -10,32 +10,32 @@ from taggit.managers import TaggableManager
 class Transaction(models.Model):
     user = models.ForeignKey(
         'users.User',
-        verbose_name=_("user")
+        verbose_name=_("user"),
     )
     source = models.ForeignKey(
         'accounts.Account',
         related_name='transactions_as_source',
         verbose_name=_("source"),
         blank=True,
-        null=True
+        null=True,
     )
     destination = models.ForeignKey(
         'accounts.Account',
         related_name='transactions_as_destination',
         verbose_name=_("destination"),
         blank=True,
-        null=True
+        null=True,
     )
     amount = models.DecimalField(
         max_digits=9,
         decimal_places=2,
         verbose_name=_("amount"),
-        default=0
+        default=0,
     )
     description = models.CharField(
         max_length=255,
         blank=True,
-        verbose_name=_("description")
+        verbose_name=_("description"),
     )
     datetime = models.DateTimeField(
         null=True,
@@ -45,7 +45,7 @@ class Transaction(models.Model):
     )
     balanced = models.BooleanField(
         default=False,
-        verbose_name=_("balanced")
+        verbose_name=_("balanced"),
     )
     balanced_changed = MonitorField(
         monitor='balanced',
@@ -62,13 +62,13 @@ class Transaction(models.Model):
     transaction_type = models.PositiveSmallIntegerField(
         blank=True,
         choices=TRANSACTION_CHOICES,
-        verbose_name=_("transaction type")
+        verbose_name=_("transaction type"),
     )
     category = TreeForeignKey(
         'categories.Category',
         verbose_name=_("category"),
         blank=True,
-        null=True
+        null=True,
     )
     tags = TaggableManager(
         blank=True,
@@ -81,7 +81,7 @@ class Transaction(models.Model):
         related_name='transactions_created_by',
     )
     created_at = models.DateTimeField(
-        verbose_name=_('created at')
+        verbose_name=_('created at'),
     )
     modified_by = models.ForeignKey(
         'users.User',

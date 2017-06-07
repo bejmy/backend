@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.contrib.admin.views.main import ChangeList
+from django.db.models import DecimalField, Sum
+from django.db.models.functions import Coalesce
 
 from mptt.admin import TreeRelatedFieldListFilter
 
@@ -27,8 +30,63 @@ class CategoryFilter(TreeRelatedFieldListFilter):
         return choices
 
 
+class TransactionChangeList(ChangeList):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.get_summary()
+
+    def _get_summary_entry(self, summary, key, **filter_kwargs):
+        queryset = self.result_list.filter(**filter_kwargs)
+        field = DecimalField(max_digits=9, decimal_places=2)
+        aggregate_kwargs = {
+            key: Coalesce(Sum('amount', output_field=field), 0)
+        }
+        summary.update(queryset.aggregate(**aggregate_kwargs))
+        return summary
+
+    def get_summary(self):
+        queries = {
+            'absolute': {},
+            'balanced': {'status': Transaction.STATUS_BALANCED},
+            'registered': {'status': Transaction.STATUS_REGISTERED},
+            'planned': {'status': Transaction.STATUS_PLANNED},
+        }
+        self.summary = []
+        for name, filters in queries.items():
+            self.summary.append(self._get_single_summary(name, **filters))
+
+    def _get_single_summary(self, name='absolute', status=None):
+        summary = {}
+        summary['name'] = name
+        query = {
+            'withdrawal': {
+                'transaction_type': Transaction.TRANSACTION_WITHDRAWAL
+            },
+            'deposit': {
+                'transaction_type': Transaction.TRANSACTION_DEPOSIT,
+            },
+            'transfer': {
+                'transaction_type': Transaction.TRANSACTION_TRANSFER,
+            },
+        }
+
+        for key, filters in query.items():
+            if status is not None:
+                filters.update({'status': status})
+            self._get_summary_entry(summary, key, **filters)
+
+        summary['total'] = summary['deposit'] - summary['withdrawal']
+
+        return summary
+
+
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
+
+    def get_changelist(self, request, **kwargs):
+        return TransactionChangeList
+
     form = TransactionAdminForm
     list_display_links = (
         'id',
