@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'mptt',
     'taggit',
+    'rangefilter',
 
     'bejmy.users',
     'bejmy.accounts',

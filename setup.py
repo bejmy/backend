@@ -20,6 +20,7 @@ install_requires = [
     'whitenoise',
     'django-model-utils',
     'django-taggit',
+    'django-admin-rangefilter',
 ]
 
 testing_requires = [

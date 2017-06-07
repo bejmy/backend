@@ -5,6 +5,7 @@ from django.db.models.functions import Coalesce
 from django.utils.translation import ugettext as _
 
 from mptt.admin import TreeRelatedFieldListFilter
+from rangefilter.filter import DateRangeFilter
 
 from bejmy.transactions.models import Transaction
 from bejmy.transactions.forms import TransactionAdminForm
@@ -117,6 +118,7 @@ class TransactionAdmin(admin.ModelAdmin):
         'user',
     )
     list_filter = (
+        ('datetime', DateRangeFilter),
         ('category', CategoryFilter),
         'tags',
         'transaction_type',
