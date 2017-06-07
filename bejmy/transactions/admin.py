@@ -7,11 +7,16 @@ from bejmy.transactions.forms import TransactionAdminForm
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     form = TransactionAdminForm
+    list_display_links = (
+        'id',
+        'amount',
+    )
     list_display = (
         'id',
+        'amount',
         'description',
         'category',
-        'amount',
+        'tags',
         'balanced',
         'user',
         'status',
