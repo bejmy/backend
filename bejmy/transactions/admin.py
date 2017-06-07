@@ -16,7 +16,7 @@ class TransactionAdmin(admin.ModelAdmin):
         'amount',
         'description',
         'category',
-        'tags',
+        'tag_list',
         'balanced',
         'user',
         'status',
@@ -49,6 +49,9 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     date_hierarchy = 'datetime'
 
+    def tag_list(self, obj):
+        return u", ".join(o.name for o in obj.tags.all())
+
     def get_form(self, request, *args, **kwargs):
         form = super().get_form(request, *args, **kwargs)
         form.user = request.user
@@ -68,4 +71,6 @@ class TransactionAdmin(admin.ModelAdmin):
         queryset = super().get_queryset(request, *args, **kwargs)
         if not request.user.is_superuser:
             queryset = queryset.filter(user=request.user)
+        queryset = queryset.prefetch_related('tags', 'category', 'user',
+                                             'source', 'destination')
         return queryset
