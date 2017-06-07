@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from model_utils.fields import MonitorField
 
 from mptt.fields import TreeForeignKey
+from taggit.managers import TaggableManager
 
 
 class Transaction(models.Model):
@@ -68,6 +69,10 @@ class Transaction(models.Model):
         verbose_name=_("category"),
         blank=True,
         null=True
+    )
+    tags = TaggableManager(
+        blank=True,
+        verbose_name=_("tags"),
     )
     created_by = models.ForeignKey(
         'users.User',

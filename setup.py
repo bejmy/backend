@@ -19,6 +19,7 @@ install_requires = [
     'dj-database-url',
     'whitenoise',
     'django-model-utils',
+    'django-taggit',
 ]
 
 testing_requires = [
