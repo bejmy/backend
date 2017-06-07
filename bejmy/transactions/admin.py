@@ -56,7 +56,7 @@ class TransactionChangeList(ChangeList):
         for name, filters in queries.items():
             self.summary.append(self._get_single_summary(name, **filters))
 
-    def _get_single_summary(self, name='absolute', status=None):
+    def _get_single_summary(self, name='absolute', **extra_filters):
         summary = {}
         summary['name'] = name
         query = {
@@ -72,8 +72,8 @@ class TransactionChangeList(ChangeList):
         }
 
         for key, filters in query.items():
-            if status is not None:
-                filters.update({'status': status})
+            if extra_filters is not None:
+                filters.update(extra_filters)
             self._get_summary_entry(summary, key, **filters)
 
         summary['total'] = summary['deposit'] - summary['withdrawal']
