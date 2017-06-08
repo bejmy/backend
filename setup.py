@@ -21,6 +21,7 @@ install_requires = [
     'django-model-utils',
     'django-taggit',
     'django-admin-rangefilter',
+    'django-flat-responsive',
 ]
 
 testing_requires = [
