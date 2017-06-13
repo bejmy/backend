@@ -91,12 +91,10 @@ class TransactionAdmin(admin.ModelAdmin):
 
     form = TransactionAdminForm
     list_display_links = (
-        'id',
-        'amount',
+        '__str__',
     )
     list_display = (
-        'id',
-        'amount',
+        '__str__',
         'description',
         'category',
         'tag_list',

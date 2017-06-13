@@ -82,10 +82,11 @@ def update_account(sender, instance, **kwargs):
 def register_planned_transactions(sender, **kwargs):
     # poor asynchronous task execution :D
     now = timezone.now()
-    queryset = Transaction.objects.filter(
+    transactions = Transaction.objects.filter(
         status=Transaction.STATUS_PLANNED,
         datetime__lte=now)
-    if queryset.exists():
-        for transaction in queryset.all():
-            print(transaction)
-            transaction.save()
+
+    # TODO: figure out if there's a better way to update transaction status and
+    # update accounts balances
+    for transaction in transactions:
+        transaction.save()

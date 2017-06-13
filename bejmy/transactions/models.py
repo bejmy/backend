@@ -112,7 +112,8 @@ class Transaction(models.Model):
         verbose_name_plural = _("transactions")
 
     def __str__(self):
-        display = self.description or self.category or self.transaction_type
+        display = self.description or self.category or \
+            self.get_transaction_type_display()
         return f"{display} ({self.amount})"
 
     def get_transaction_type(self):
