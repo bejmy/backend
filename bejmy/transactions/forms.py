@@ -24,6 +24,7 @@ class TransactionAdminForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         user = self.user
+        self.fields['source'].initial = user.default_source_account
 
         queryset = Category.objects.filter(user=user)
         self.fields['category'].queryset = queryset
