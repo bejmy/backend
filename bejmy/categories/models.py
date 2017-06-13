@@ -13,7 +13,8 @@ class Category(MPTTModel):
     )
     user = models.ForeignKey(
         'users.User',
-        verbose_name=_("user")
+        verbose_name=_("user"),
+        related_name='categories',
     )
     name = models.CharField(
         max_length=255,

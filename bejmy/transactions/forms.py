@@ -2,10 +2,6 @@ from decimal import Decimal
 from django import forms
 from django.utils.translation import ugettext as _
 
-from bejmy.accounts.models import Account
-from bejmy.categories.models import Category
-
-
 from .models import Transaction
 
 
@@ -24,12 +20,17 @@ class TransactionAdminForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         user = self.user
-        self.fields['source'].initial = user.default_source_account
+        if user.settings.default_source_account_most_used:
+            source = user.accounts.first()
+        else:
+            source = user.settings.default_source_account
+        self.fields['source'].initial = source
+        self.fields['balanced'].initial = user.settings.default_balanced
 
-        queryset = Category.objects.filter(user=user)
+        queryset = user.categories.all()
         self.fields['category'].queryset = queryset
 
-        queryset = Account.objects.filter(user=user)
+        queryset = user.accounts.all()
         self.fields['source'].queryset = queryset
         self.fields['destination'].queryset = queryset
 

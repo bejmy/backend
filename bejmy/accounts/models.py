@@ -5,7 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 class Account(models.Model):
     user = models.ForeignKey(
         'users.User',
-        verbose_name=_("user")
+        verbose_name=_("user"),
+        related_name='accounts',
     )
     name = models.CharField(
         max_length=255,
