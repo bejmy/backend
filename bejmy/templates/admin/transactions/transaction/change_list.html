@@ -1,0 +1,71 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+  {{ block.super }}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{% endblock %}
+
+{#% block search %#}
+{% block pagination %}
+{{ block.super }}
+<div class="xfull">
+  <h2>Summary</h2>
+  <table border="0" cellspacing="5" cellpadding="5">
+    <thead>
+    <tr>
+      <th scope="col">
+        <div class="text">
+          <span>
+            {% trans "Transaction summary" %}
+          </span>
+        </div>
+      </th>
+      <th scope="col">
+        <div class="text">
+          <span>
+            {% trans "Transfer" %}
+          </span>
+        </div>
+      </th>
+      <th scope="col">
+        <div class="text">
+          <span>
+            {% trans "Withdrawal" %}
+          </span>
+        </div>
+      </th>
+      <th scope="col">
+        <div class="text">
+          <span>
+            {% trans "Deposit" %}
+          </span>
+        </div>
+      </th>
+      <th scope="col">
+        <div class="text">
+          <span>
+            {% trans "Total" %}
+          </span>
+        </div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in cl.summary %}
+    <tr class={% cycle "row1" "row2" %}>
+        <td>{{ row.name }}</td>
+        <td>{{ row.transfer }}</td>
+        <td>{{ row.withdrawal }}</td>
+        <td>{{ row.deposit }}</td>
+        <td>{{ row.total }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p></p>
+</div>
+{% endblock %}

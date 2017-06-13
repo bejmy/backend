@@ -1,7 +1,164 @@
 {% extends "admin/base.html" %}
+{% load admin_static %}
+{% block blockbots %}
+    {{ block.super }}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}" />
+{% endblock %}
 {% load i18n %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block extrahead %}
+<link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/static/favicons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#2e7c31">
+<meta name="apple-mobile-web-app-title" content="Bejmy">
+<meta name="application-name" content="Bejmy">
+<meta name="theme-color" content="#2e7c31">
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<script>
+window.addEventListener("beforeunload", function(event) {
+    document.getElementById("loader").style.display = 'flex';
+});
+window.addEventListener("load", function(event) {
+    document.getElementById("loader").style.display = 'none';
+});
+</script>
+<style>
+#loader {
+    top:0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .5);
+    z-index: 99999;
+}
+
+#loader .spinner {
+    animation: rotator 1.4s linear infinite;
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+#loader .path {
+    stroke: #2e7c31;
+    -stroke: #60ac5d;
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash 1.4s ease-in-out infinite;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+
+    /* https://material.io/color/#!/?view.left=0&view.right=0&primary.color=2e7c31 */
+    #header {
+        color: #fff;
+        background: #2e7c31;
+    }
+    #branding h1, #branding h1 a:link, #branding h1 a:visited {
+        color: #fff;
+    }
+    #user-tools a:focus, #user-tools a:hover {
+        text-decoration: none;
+        border-bottom-color: #fff;
+        color: #fff;
+    }
+    .module h2, .module caption, .inline-group h2 {
+        background: #60ac5d;
+        color: #fff;
+    }
+
+    div.breadcrumbs {
+        background: #60ac5d;
+        color: #fff;
+    }
+    a:link, a:visited {
+        color: #60ac5d;
+    }
+    a:focus, a:hover {
+        color: #2e7c31;
+    }
+    .button.default, input[type=submit].default, .submit-row input.default {
+        background: #60ac5d;
+    }
+    .button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+        background: #2e7c31;
+    }
+    .object-tools a:link, .object-tools a:visited {
+        background-color: #60ac5d;
+        opacity: .5;
+    }
+    .object-tools a:focus, .object-tools a:hover {
+        background-color: #60ac5d;
+        opacity: 1;
+    }
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background: #60ac5d;
+        color: #fff;
+    }
+    .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+        background: #2e7c31;
+    }
+    .admindatefilter .button, .admindatefilter input[type=reset] {
+        background: #60ac5d;
+    }
+    .admindatefilter .button:hover, .admindatefilter input[type=reset]:hover {
+        background: #2e7c31;
+    }
+
+    .calendarbox .calendar caption, .calendarbox .calendarbox h2 {
+        background: #2e7c31;
+        color: #fff;
+    }
+
+    .calendarbox .calendar td.selected a {
+        background: #60ac5d;
+    }
+    .calendarbox .calendar td a:focus, .timelist a:focus, .calendarbox .calendar td a:hover, .timelist a:hover {
+        background: #60ac5d;
+    }
+    .calendarbox .calendar td a:active, .timelist a:active, .calendarbox .calendar td a:active, .timelist a:active {
+        background: #2e7c31;
+    }
+    body #changelist-filter li.selected a {
+        color: #2e7c31;
+    }
+    body #changelist-filter a:focus, body #changelist-filter a:hover, body #changelist-filter li.selected a:focus, body #changelist-filter li.selected a:hover {
+        color: #004f04;
+    }
+</style>
+
+{% endblock %}
 
 {% block branding %}
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
@@ -14,8 +171,8 @@
   /
   <form style="display: inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
     <input name="next" type="hidden" value="{{ request.path }}" />
-    <label for="id_language_select">{% trans "Change language" %}: </label>
-    <select id="id_language_select" name="language" onChange="this.form.submit()">
+    {% trans "Change language" %}: 
+    <select name="language" onChange="this.form.submit()">
       {% get_current_language as LANGUAGE_CODE %}
       {% get_available_languages as LANGUAGES %}
       {% get_language_info_list for LANGUAGES as languages %}
@@ -26,4 +183,13 @@
       {% endfor %}
     </select>
   </form>
+{% endblock %}
+
+{% block messages %}
+<div id="loader">
+<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+</svg>
+</div>
+{{ block.super }}
 {% endblock %}
