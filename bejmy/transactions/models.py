@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from model_utils.fields import MonitorField
 
+from model_utils.fields import MonitorField
 from mptt.fields import TreeForeignKey
 from taggit.managers import TaggableManager
 

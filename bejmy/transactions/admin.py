@@ -7,8 +7,8 @@ from django.utils.translation import ugettext as _
 from mptt.admin import TreeRelatedFieldListFilter
 from rangefilter.filter import DateRangeFilter
 
-from bejmy.transactions.models import Transaction
 from bejmy.transactions.forms import TransactionAdminForm
+from bejmy.transactions.models import Transaction
 
 
 class CategoryFilter(TreeRelatedFieldListFilter):
