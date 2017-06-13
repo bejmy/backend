@@ -7,11 +7,37 @@
 
 {% block extrahead %}
 {{ block.super }}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Money spent'],
+          {% for category, amount in cl.categories %}
+          ['{{ category }}', {{ amount }}],
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: 'Categories'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 {% endblock %}
 
 {#% block search %#}
 {% block pagination %}
 {{ block.super }}
+
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+
 <div class="xfull">
   <h2>Summary</h2>
   <table border="0" cellspacing="5" cellpadding="5">

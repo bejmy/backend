@@ -9,6 +9,7 @@ from rangefilter.filter import DateRangeFilter
 
 from bejmy.transactions.forms import TransactionAdminForm
 from bejmy.transactions.models import Transaction
+from bejmy.categories.models import Category
 
 
 class CategoryFilter(TreeRelatedFieldListFilter):
@@ -37,6 +38,18 @@ class TransactionChangeList(ChangeList):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.get_summary()
+        self.get_categories()
+
+    def get_categories(self):
+        queryset = self.result_list.filter(
+            transaction_type=Transaction.TRANSACTION_WITHDRAWAL)
+        queryset = queryset.values_list('category')
+        queryset = queryset.annotate(amount=Sum('amount'))
+        category_amount = queryset.order_by('-amount')
+        categories = Category.objects.in_bulk(
+            filter(None, tuple(zip(*category_amount))[0]))
+        self.categories = (
+            (categories.get(pk, 'Other'), amount) for pk, amount in category_amount)
 
     def _get_summary_entry(self, summary, key, **filter_kwargs):
         queryset = self.result_list.filter(**filter_kwargs)
