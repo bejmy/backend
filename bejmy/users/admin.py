@@ -5,4 +5,14 @@ from bejmy.users.models import User
 
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
-    pass
+
+    fieldset_extra = ('Extra', {
+        'fields': (
+            'default_source_account',
+        ),
+    })
+
+    def get_fieldsets(self, *args, **kwargs):
+        fieldsets = list(super().get_fieldsets(*args, **kwargs))
+        fieldsets.append(self.fieldset_extra)
+        return fieldsets

@@ -35,9 +35,22 @@ class Account(models.Model):
         default=0,
         verbose_name=_("balance registered")
     )
+    order = models.PositiveSmallIntegerField(
+        default=0,
+        verbose_name=_(u"order"),
+    )
+    uses = models.PositiveIntegerField(
+        default=0,
+        verbose_name=_(u"uses"),
+    )
+
+    class Meta:
+        verbose_name = _("account")
+        verbose_name_plural = _("accounts")
+        ordering = ['order', '-uses']
 
     def __str__(self):
-        return f"{self.name} ({self.balance})"
+        return f"{self.user} / {self.name} ({self.balance})"
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)
