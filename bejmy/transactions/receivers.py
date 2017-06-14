@@ -79,7 +79,7 @@ def update_account(sender, instance, **kwargs):
 
 
 @receiver(request_started)
-def register_planned_transactions(sender, **kwargs):
+def register_planned_transactions(*args, **kwargs):
     # poor asynchronous task execution :D
     now = timezone.now()
     transactions = Transaction.objects.filter(

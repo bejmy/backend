@@ -123,6 +123,8 @@ class Transaction(models.Model):
             transaction_type = Transaction.TRANSACTION_WITHDRAWAL
         elif self.destination:
             transaction_type = Transaction.TRANSACTION_DEPOSIT
+        else:
+            raise ValueError('source and/or destination account must be specified')
         return transaction_type
 
     def save(self, *args, **kwargs):
