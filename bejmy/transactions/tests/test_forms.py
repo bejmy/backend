@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django import forms
 from unittest.mock import MagicMock, Mock
 
 from bejmy.transactions.forms import TransactionForm
@@ -73,3 +74,54 @@ class TransactionFormTest(TestCase):
 
         TransactionForm._set_destination_choices(form)
         assert form.fields['destination'].queryset == accounts
+
+    def test_clean_accounts(self):
+        form = MagicMock()
+        form.cleaned_data = {
+            'destination': Mock(),
+            'source': Mock(),
+        }
+        TransactionForm.clean_accounts(form)
+
+    def test_clean_accounts_source_only(self):
+        form = MagicMock()
+        form.cleaned_data = {
+            'destination': None,
+            'source': Mock(),
+        }
+        TransactionForm.clean_accounts(form)
+
+    def test_clean_accounts_destination_only(self):
+        form = MagicMock()
+        form.cleaned_data = {
+            'destination': Mock(),
+            'source': None,
+        }
+        TransactionForm.clean_accounts(form)
+
+    def test_clean_accounts_none(self):
+        form = MagicMock()
+        form.cleaned_data = {
+            'destination': None,
+            'source': None,
+        }
+        with self.assertRaises(forms.ValidationError):
+            TransactionForm.clean_accounts(form)
+
+    def test_clean_accounts_the_same(self):
+        form = MagicMock()
+        account = Mock()
+        form.cleaned_data = {
+            'destination': account,
+            'source': account,
+        }
+        with self.assertRaises(forms.ValidationError):
+            TransactionForm.clean_accounts(form)
+
+    def test_clean_facade(self):
+        form = Mock()
+        form.clean_accounts = Mock()
+
+        TransactionForm.clean(form)
+
+        assert form.clean_accounts.called

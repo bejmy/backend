@@ -44,7 +44,7 @@ class TransactionForm(forms.ModelForm):
     def _set_destination_choices(self):
         self.fields['destination'].queryset = self.user.accounts.all()
 
-    def clean(self):
+    def clean_accounts(self):
         source = self.cleaned_data.get('source')
         destination = self.cleaned_data.get('destination')
         if not (source or destination):
@@ -52,4 +52,7 @@ class TransactionForm(forms.ModelForm):
         if source == destination:
             raise forms.ValidationError(
                 _("Source and destination accounts are the same."))
+
+    def clean(self):
+        self.clean_accounts()
         return self.cleaned_data
