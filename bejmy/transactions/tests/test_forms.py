@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django import forms
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock
 
 from bejmy.transactions.forms import TransactionForm
 
@@ -44,33 +44,33 @@ class TransactionFormTest(TestCase):
     def test_set_balanced_initial(self):
         form = MagicMock()
         form.user.settings.default_balanced = True
-        form.fields = {'balanced': Mock()}
+        form.fields = {'balanced': MagicMock()}
         TransactionForm._set_balanced_initial(form)
         assert form.fields['balanced'].initial is True
 
     def test_set_categories_choices(self):
         form = MagicMock()
-        categories = Mock()
+        categories = MagicMock()
         form.user.categories.all.return_value = categories
-        form.fields = {'category': Mock()}
+        form.fields = {'category': MagicMock()}
 
         TransactionForm._set_categories_choices(form)
         assert form.fields['category'].queryset == categories
 
     def test_set_source_choices(self):
         form = MagicMock()
-        accounts = Mock()
+        accounts = MagicMock()
         form.user.accounts.all.return_value = accounts
-        form.fields = {'source': Mock()}
+        form.fields = {'source': MagicMock()}
 
         TransactionForm._set_source_choices(form)
         assert form.fields['source'].queryset == accounts
 
     def test_set_destination_choices(self):
         form = MagicMock()
-        accounts = Mock()
+        accounts = MagicMock()
         form.user.accounts.all.return_value = accounts
-        form.fields = {'destination': Mock()}
+        form.fields = {'destination': MagicMock()}
 
         TransactionForm._set_destination_choices(form)
         assert form.fields['destination'].queryset == accounts
@@ -78,8 +78,8 @@ class TransactionFormTest(TestCase):
     def test_clean_accounts(self):
         form = MagicMock()
         form.cleaned_data = {
-            'destination': Mock(),
-            'source': Mock(),
+            'destination': MagicMock(),
+            'source': MagicMock(),
         }
         TransactionForm.clean_accounts(form)
 
@@ -87,14 +87,14 @@ class TransactionFormTest(TestCase):
         form = MagicMock()
         form.cleaned_data = {
             'destination': None,
-            'source': Mock(),
+            'source': MagicMock(),
         }
         TransactionForm.clean_accounts(form)
 
     def test_clean_accounts_destination_only(self):
         form = MagicMock()
         form.cleaned_data = {
-            'destination': Mock(),
+            'destination': MagicMock(),
             'source': None,
         }
         TransactionForm.clean_accounts(form)
@@ -110,7 +110,7 @@ class TransactionFormTest(TestCase):
 
     def test_clean_accounts_the_same(self):
         form = MagicMock()
-        account = Mock()
+        account = MagicMock()
         form.cleaned_data = {
             'destination': account,
             'source': account,
@@ -119,8 +119,8 @@ class TransactionFormTest(TestCase):
             TransactionForm.clean_accounts(form)
 
     def test_clean_facade(self):
-        form = Mock()
-        form.clean_accounts = Mock()
+        form = MagicMock()
+        form.clean_accounts = MagicMock()
 
         TransactionForm.clean(form)
 
