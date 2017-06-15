@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 from .models import Transaction
 
 
-class TransactionAdminForm(forms.ModelForm):
+class TransactionForm(forms.ModelForm):
 
     amount = forms.DecimalField(
         min_value=Decimal('0.01'),
@@ -19,20 +19,30 @@ class TransactionAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        user = self.user
-        if user.settings.default_source_account_most_used:
-            source = user.accounts.first()
+        self._set_source_initial()
+        self._set_balanced_initial()
+        self._set_categories_choices()
+        self._set_source_choices()
+        self._set_destination_choices()
+
+    def _set_source_initial(self):
+        if self.user.settings.default_source_account_most_used:
+            source = self.user.accounts.first()
         else:
-            source = user.settings.default_source_account
+            source = self.user.settings.default_source_account
         self.fields['source'].initial = source
-        self.fields['balanced'].initial = user.settings.default_balanced
 
-        queryset = user.categories.all()
-        self.fields['category'].queryset = queryset
+    def _set_balanced_initial(self):
+        self.fields['balanced'].initial = self.user.settings.default_balanced
 
-        queryset = user.accounts.all()
-        self.fields['source'].queryset = queryset
-        self.fields['destination'].queryset = queryset
+    def _set_categories_choices(self):
+        self.fields['category'].queryset = self.user.categories.all()
+
+    def _set_source_choices(self):
+        self.fields['source'].queryset = self.user.accounts.all()
+
+    def _set_destination_choices(self):
+        self.fields['destination'].queryset = self.user.accounts.all()
 
     def clean(self):
         source = self.cleaned_data.get('source')

@@ -7,7 +7,7 @@ from django.utils.translation import ugettext as _
 from mptt.admin import TreeRelatedFieldListFilter
 from rangefilter.filter import DateRangeFilter
 
-from bejmy.transactions.forms import TransactionAdminForm
+from bejmy.transactions.forms import TransactionForm
 from bejmy.transactions.models import Transaction
 from bejmy.categories.models import Category
 
@@ -102,7 +102,7 @@ class TransactionAdmin(admin.ModelAdmin):
     def get_changelist(self, request, **kwargs):
         return TransactionChangeList
 
-    form = TransactionAdminForm
+    form = TransactionForm
     list_display_links = (
         '__str__',
     )

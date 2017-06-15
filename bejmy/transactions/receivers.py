@@ -34,7 +34,9 @@ def create_initial_balancing_transaction(sender, instance, created, **kwags):
 @receiver(post_save, sender=Transaction)
 def update_account(sender, instance, **kwargs):
     """Update account balance and usage data."""
-    # keep it ordered, order used later in make balances cumulative
+    # TODO: split commented sections into functions or make class (like celery tasks)
+
+    # keep this dict ordered, order used later in make balances cumulative
     status_field_map = {
         Transaction.STATUS_BALANCED: 'balance',
         Transaction.STATUS_REGISTERED: 'balance_registered',

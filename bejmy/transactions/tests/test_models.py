@@ -73,3 +73,7 @@ class TransactionModelTestCase(TestCase):
         self.assertEqual(
             str(self.transaction),
             f"{self.transaction.category} ({self.transaction.amount})")
+
+    def test_get_transaction_type_raises(self):
+        with self.assertRaises(ValueError):
+            self.transaction.get_transaction_type()

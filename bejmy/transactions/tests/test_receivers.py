@@ -1,5 +1,4 @@
 from decimal import Decimal
-from unittest.mock import patch
 
 from django.test import TestCase
 from django.utils import timezone
@@ -8,6 +7,11 @@ from bejmy.accounts.models import Account
 from bejmy.transactions.models import Transaction
 from bejmy.transactions.receivers import register_planned_transactions
 from bejmy.users.models import User
+
+
+class UpdateAccountTest(TestCase):
+    # TODO
+    pass
 
 
 class InitialTransactionTest(TestCase):
@@ -57,8 +61,7 @@ class RegisterPlannedTransactionsTest(TestCase):
     def setUp(self):
         pass
 
-    @patch('bejmy.transactions.receivers.timezone')
-    def test_receiver_updates_transaction(self, timezone_receivers_mock):
+    def test_receiver_updates_transaction(self):
         user = User(
             username="test@user.com",
             email="test@user.com",
