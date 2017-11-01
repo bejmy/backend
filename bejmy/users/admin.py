@@ -8,8 +8,8 @@ class UserAdmin(AuthUserAdmin):
 
     fieldset_extra = ('Extra', {
         'fields': (
-            'default_source_account',
-            'default_balanced',
+            #'default_source_account',
+            #'default_balanced',
         ),
     })
 
