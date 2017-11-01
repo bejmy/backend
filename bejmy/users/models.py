@@ -36,4 +36,4 @@ class Settings(models.Model):
         verbose_name_plural = _(u"settings")
 
     def __str__(self):
-        return str(_(f"{self.user} settings"))
+        return str(_("{self.user} settings".format(self=self)))

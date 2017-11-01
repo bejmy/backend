@@ -51,7 +51,7 @@ class Account(models.Model):
         ordering = ['order', '-uses']
 
     def __str__(self):
-        return f"{self.user} / {self.name} ({self.balance})"
+        return "{self.user} / {self.name} ({self.balance})".format(self=self)
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)

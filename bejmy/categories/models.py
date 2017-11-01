@@ -35,4 +35,4 @@ class Category(MPTTModel):
         verbose_name_plural = _("categories")
 
     def __str__(self):
-        return f"{self.name}"
+        return "{self.name}".format(self=self)

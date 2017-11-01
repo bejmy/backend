@@ -114,7 +114,7 @@ class Transaction(models.Model):
     def __str__(self):
         display = self.description or self.category or \
             self.get_transaction_type_display()
-        return f"{display} ({self.amount})"
+        return "{display} ({self.amount})".format(display=display, self=self)
 
     def get_transaction_type(self):
         if self.source and self.destination:
