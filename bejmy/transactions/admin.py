@@ -99,13 +99,60 @@ class TransactionChangeList(ChangeList):
         return summary
 
 
+class TransactionAdminBase:
+    _form = TransactionForm
+
+    fieldset_base = (None, {
+        'fields': (
+            'source',
+            'destination',
+            'amount',
+            'description',
+            'datetime',
+            'balanced',
+            'category',
+            'tags',
+        )
+    })
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = [self.fieldset_base]
+        return fieldsets
+
+
 @admin.register(Transaction)
-class TransactionAdmin(admin.ModelAdmin):
+class TransactionAdmin(TransactionAdminBase, admin.ModelAdmin):
 
     def get_changelist(self, request, **kwargs):
         return TransactionChangeList
 
-    form = TransactionForm
+    fieldset_info = ('Info', {
+        'fields': (
+            'status',
+            'transaction_type',
+            'user',
+            'balanced_changed',
+            'created_at',
+            'created_by',
+            'modified_at',
+            'modified_by',
+        ),
+    })
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj)
+        if obj is not None:
+            fieldsets.append(self.fieldset_info)
+        return fieldsets
+
+    def get_form(self, request, *args, **kwargs):
+        self._form.user = request.user
+        form = super().get_form(request, *args, form=self._form)
+        for field in ('source', 'destination', 'category'):
+            form.base_fields[field].widget.can_add_related = False
+            form.base_fields[field].widget.can_change_related = False
+        return form
+
     list_display_links = (
         '__str__',
     )
@@ -150,54 +197,8 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     date_hierarchy = 'datetime'
 
-    fieldset_base = (None, {
-        'fields': (
-            'source',
-            'destination',
-            'amount',
-            'description',
-            'datetime',
-            'balanced',
-            'category',
-            'tags',
-        )
-    })
-    fieldset_info = ('Info', {
-        'fields': (
-            'status',
-            'transaction_type',
-            'user',
-            'balanced_changed',
-            'created_at',
-            'created_by',
-            'modified_at',
-            'modified_by',
-        ),
-    })
-
-    def get_fieldsets(self, request, obj=None):
-        fieldsets = [self.fieldset_base]
-        if obj is not None:
-            fieldsets.append(self.fieldset_info)
-        return fieldsets
-
     def tag_list(self, obj):
         return u", ".join(o.name for o in obj.tags.all())
-
-    def get_form(self, request, *args, **kwargs):
-        form = super().get_form(request, *args, **kwargs)
-        form.user = request.user
-        for field in ('source', 'destination', 'category'):
-            form.base_fields[field].widget.can_add_related = False
-            form.base_fields[field].widget.can_change_related = False
-        return form
-
-    def save_model(self, request, obj, *args, **kwargs):
-        obj.modified_by = request.user
-        if not obj.pk:
-            obj.user = request.user
-            obj.created_by = request.user
-        return super().save_model(request, obj, *args, **kwargs)
 
     def get_queryset(self, request, *args, **kwargs):
         queryset = super().get_queryset(request, *args, **kwargs)

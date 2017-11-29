@@ -56,3 +56,10 @@ class TransactionForm(forms.ModelForm):
     def clean(self):
         self.clean_accounts()
         return self.cleaned_data
+
+    def save(self, *args, **kwargs):
+        self.instance.modified_by = self.user
+        if not self.instance.pk:
+            self.instance.user = self.user
+            self.instance.created_by = self.user
+        return super().save(*args, **kwargs)
