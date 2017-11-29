@@ -41,7 +41,7 @@ class TransactionChangeList(ChangeList):
         self.get_categories()
 
     def get_categories(self):
-        queryset = self.result_list.filter(
+        queryset = self.queryset._clone().filter(
             transaction_type=Transaction.TRANSACTION_WITHDRAWAL)
         queryset = queryset.values_list('category')
         queryset = queryset.annotate(amount=Sum('amount'))
@@ -55,7 +55,7 @@ class TransactionChangeList(ChangeList):
             self.categories = ()
 
     def _get_summary_entry(self, summary, key, **filter_kwargs):
-        queryset = self.result_list.filter(**filter_kwargs)
+        queryset = self.queryset._clone().filter(**filter_kwargs)
         field = DecimalField(max_digits=9, decimal_places=2)
         aggregate_kwargs = {
             key: Coalesce(Sum('amount', output_field=field), 0)
