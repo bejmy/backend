@@ -11,6 +11,36 @@ from bejmy.transactions.forms import TransactionForm
 from bejmy.transactions.models import Transaction
 from bejmy.categories.models import Category
 
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+from bejmy.transactions.formats import MBankCSVFormat
+
+
+class TransactionResource(resources.ModelResource):
+
+    class Meta:
+        model = Transaction
+        fields = [
+            'id',
+            'user',
+            'source',
+            'destination',
+            'amount',
+            'description',
+            'datetime',
+            'balanced',
+            'balanced_changed',
+            'transaction_type',
+            'category',
+            'created_by',
+            'created_at',
+            'modified_by',
+            'modified_at',
+            'status',
+            'tags',
+        ]
+
 
 class CategoryFilter(TreeRelatedFieldListFilter):
     mptt_level_indent = 3
@@ -49,8 +79,7 @@ class TransactionChangeList(ChangeList):
         if category_amount:
             categories = Category.objects.in_bulk(
                 filter(None, tuple(zip(*category_amount))[0]))
-            self.categories = (
-                (categories.get(pk, 'Other'), amount) for pk, amount in category_amount)
+            self.categories = ((categories.get(pk, 'Other'), amount) for pk, amount in category_amount)  # noqa
         else:
             self.categories = ()
 
@@ -121,7 +150,10 @@ class TransactionAdminBase:
 
 
 @admin.register(Transaction)
-class TransactionAdmin(TransactionAdminBase, admin.ModelAdmin):
+class TransactionAdmin(TransactionAdminBase, ImportExportModelAdmin):
+
+    resource_class = TransactionResource
+    formats = [MBankCSVFormat]
 
     def get_changelist(self, request, **kwargs):
         return TransactionChangeList

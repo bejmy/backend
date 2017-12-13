@@ -22,6 +22,7 @@ install_requires = [
     'django-taggit',
     'django-admin-rangefilter',
     'django-flat-responsive',
+    'django-import-export',
 ]
 
 testing_requires = [
