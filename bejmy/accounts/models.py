@@ -50,7 +50,8 @@ class Account(models.Model):
         verbose_name=_("account number"),
         blank=True,
         null=True,
-        unique=True,
+        default=None,
+        unique=True
     )
 
     class Meta:
@@ -62,5 +63,8 @@ class Account(models.Model):
         return "{self.user} / {self.name} ({self.balance})".format(self=self)
 
     def save(self, *args, **kwargs):
-        self.account_number = ''.join(re.findall(r'\d+', self.account_number))
+        if self.account_number:
+            self.account_number = ''.join(re.findall(r'\d+', self.account_number))  # noqa
+        else:
+            self.account_number = None
         return super().save(*args, **kwargs)
