@@ -184,6 +184,7 @@ class TransactionAdminBase:
 
 @admin.register(Transaction)
 class TransactionAdmin(TransactionAdminBase, ImportExportModelAdmin):
+    change_list_template = 'admin/transactions/transaction/change_list.html'
 
     resource_class = TransactionResource
     formats = [MBankCSVFormat]
