@@ -67,16 +67,28 @@ class MBankCSVFormat(Format):
     def get_user_field_data(self, record):
         return None
 
-    def get_source_field_data(self, record):
+    @property
+    def account_number(self):
         account_number = self.header.split('Numer rachunku;')[1].splitlines()[1]
-        account_number = ''.join(re.findall(r'\d+', account_number))
-        return account_number
+        return ''.join(re.findall(r'\d+', account_number))
+
+    def get_source_field_data(self, record):
+        if self._get_amount(record) < 0:
+            return self.account_number
+        else:
+            return ''.join(re.findall(r'\d+', record.account_number))
 
     def get_destination_field_data(self, record):
-        return None
+        if self._get_amount(record) > 0:
+            return self.account_number
+        else:
+            return ''.join(re.findall(r'\d+', record.account_number))
+
+    def _get_amount(self, record):
+        return decimal.Decimal(record.amount.replace(',', '.').replace(' ', ''))
 
     def get_amount_field_data(self, record):
-        return decimal.Decimal(record.amount.replace(',', '.').replace(' ', ''))
+        return abs(self._get_amount(record))
 
     def get_description_field_data(self, record):
         return "\n".join((
@@ -101,7 +113,7 @@ class MBankCSVFormat(Format):
         return self._get_datetime(record.balanced_date)
 
     def get_transaction_type_field_data(self, record):
-        return Transaction.TRANSACTION_WITHDRAWAL
+        return None
 
     def get_category_field_data(self, record):
         return None

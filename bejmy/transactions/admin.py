@@ -27,9 +27,24 @@ class TransactionResource(resources.ModelResource):
             row['created_by'] = user_pk
         if row['modified_by'] is None:
             row['modified_by'] = user_pk
+
+        from bejmy.accounts.models import Account
+
         if row['source']:
-            from bejmy.accounts.models import Account
-            row['source'] = Account.objects.get(user_id=user_pk, account_number=row['source']).pk  # noqa
+            try:
+                source = Account.objects.get(user_id=user_pk, account_number=row['source']) # noqa
+            except Account.DoesNotExist:
+                row['source'] = None
+            else:
+                row['source'] = source.pk
+
+        if row['destination']:
+            try:
+                destination = Account.objects.get(user_id=user_pk, account_number=row['destination'])  # noqa
+            except Account.DoesNotExist:
+                row['destination'] = None
+            else:
+                row['destination'] = destination.pk
 
     class Meta:
         model = Transaction
