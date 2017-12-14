@@ -64,7 +64,7 @@ class MBankCSVFormat(Format):
         return None
 
     def get_user_field_data(self, record):
-        return 1
+        return None
 
     def get_source_field_data(self, record):
         return 1
@@ -107,13 +107,13 @@ class MBankCSVFormat(Format):
         return None
 
     def get_created_by_field_data(self, record):
-        return 1
+        return None
 
     def get_created_at_field_data(self, record):
         return timezone.now()
 
     def get_modified_by_field_data(self, record):
-        return 1
+        return None
 
     def get_modified_at_field_data(self, record):
         return timezone.now()

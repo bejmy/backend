@@ -19,6 +19,15 @@ from bejmy.transactions.formats import MBankCSVFormat
 
 class TransactionResource(resources.ModelResource):
 
+    def before_import_row(self, row, **kwargs):
+        user_pk = kwargs['user'].pk
+        if row['user'] is None:
+            row['user'] = user_pk
+        if row['created_by'] is None:
+            row['created_by'] = user_pk
+        if row['modified_by'] is None:
+            row['modified_by'] = user_pk
+
     class Meta:
         model = Transaction
         fields = [
