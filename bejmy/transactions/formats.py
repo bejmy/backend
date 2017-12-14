@@ -1,3 +1,4 @@
+import re
 
 from collections import namedtuple
 
@@ -42,7 +43,7 @@ class MBankCSVFormat(Format):
 
         in_stream = in_stream.decode('cp1250')
         header_divider = '#Data operacji;#Data księgowania;#Opis operacji;#Tytuł;#Nadawca/Odbiorca;#Numer konta;#Kwota;#Saldo po operacji;'  # noqa
-        header, in_stream = in_stream.split(header_divider)
+        self.header, in_stream = in_stream.split(header_divider)
         footer_divider = ';;;;;;#Saldo końcowe;'
         in_stream, _ = in_stream.split(footer_divider)
 
@@ -67,7 +68,9 @@ class MBankCSVFormat(Format):
         return None
 
     def get_source_field_data(self, record):
-        return 1
+        account_number = self.header.split('Numer rachunku;')[1].splitlines()[1]
+        account_number = re.findall(r'(\d{2}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{4})', account_number)[0]  # noqa
+        return account_number
 
     def get_destination_field_data(self, record):
         return None

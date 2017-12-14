@@ -27,6 +27,9 @@ class TransactionResource(resources.ModelResource):
             row['created_by'] = user_pk
         if row['modified_by'] is None:
             row['modified_by'] = user_pk
+        if row['source']:
+            from bejmy.accounts.models import Account
+            row['source'] = Account.objects.get(account_number=row['source']).pk
 
     class Meta:
         model = Transaction
