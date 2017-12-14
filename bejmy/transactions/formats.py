@@ -69,7 +69,7 @@ class MBankCSVFormat(Format):
 
     def get_source_field_data(self, record):
         account_number = self.header.split('Numer rachunku;')[1].splitlines()[1]
-        account_number = re.findall(r'(\d{2}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{4})', account_number)[0]  # noqa
+        account_number = ''.join(re.findall(r'\d+', account_number))
         return account_number
 
     def get_destination_field_data(self, record):

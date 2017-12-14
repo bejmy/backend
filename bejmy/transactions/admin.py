@@ -29,7 +29,7 @@ class TransactionResource(resources.ModelResource):
             row['modified_by'] = user_pk
         if row['source']:
             from bejmy.accounts.models import Account
-            row['source'] = Account.objects.get(account_number=row['source']).pk
+            row['source'] = Account.objects.get(user_id=user_pk, account_number=row['source']).pk  # noqa
 
     class Meta:
         model = Transaction

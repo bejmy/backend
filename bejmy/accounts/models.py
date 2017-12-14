@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+import re
 
 
 class Account(models.Model):
@@ -61,4 +62,5 @@ class Account(models.Model):
         return "{self.user} / {self.name} ({self.balance})".format(self=self)
 
     def save(self, *args, **kwargs):
+        self.account_number = ''.join(re.findall(r'\d+', self.account_number))
         return super().save(*args, **kwargs)
