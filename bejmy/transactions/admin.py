@@ -20,7 +20,7 @@ from bejmy.transactions.formats import MBankCSVFormat
 class TransactionResource(resources.ModelResource):
 
     def skip_row(self, instance, original):
-        if original.pk:
+        if original.pk or instance.amount == 0:
             return True
 
     def before_import_row(self, row, **kwargs):
@@ -224,6 +224,7 @@ class TransactionAdmin(TransactionAdminBase, ImportExportModelAdmin):
     )
     list_display = (
         '__str__',
+        'amount',
         'description',
         'category',
         'tag_list',
