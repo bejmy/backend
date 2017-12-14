@@ -81,14 +81,16 @@ class MBankCSVFormat(Format):
     def get_source_field_data(self, record):
         if self._get_amount(record) <= 0:
             return self.account_number
-        else:
-            return ''.join(re.findall(r'\d+', record.account_number))
+        # FIXME: figure out a way to properly detect and not duplicate transfers
+        # else:
+        #     return ''.join(re.findall(r'\d+', record.account_number))
 
     def get_destination_field_data(self, record):
         if self._get_amount(record) > 0:
             return self.account_number
-        else:
-            return ''.join(re.findall(r'\d+', record.account_number))
+        # FIXME: figure out a way to properly detect and not duplicate transfers
+        # else:
+        #     return ''.join(re.findall(r'\d+', record.account_number))
 
     def _get_amount(self, record):
         return decimal.Decimal(record.amount.replace(',', '.').replace(' ', ''))
