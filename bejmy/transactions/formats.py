@@ -1,14 +1,16 @@
+import csv
+import decimal
+import hashlib
 import re
+import tablib
 
 from collections import namedtuple
 
-from import_export.formats.base_formats import Format
-from .models import Transaction
-import decimal
 from django.utils import timezone
 
-import tablib
-import csv
+from import_export.formats.base_formats import Format
+
+from .models import Transaction
 
 
 class MBankCSVFormat(Format):
@@ -39,6 +41,7 @@ class MBankCSVFormat(Format):
             'modified_at',
             'status',
             'tags',
+            'import_hash',
         ]
 
         in_stream = in_stream.decode('cp1250')
@@ -57,6 +60,9 @@ class MBankCSVFormat(Format):
             dataset.append([self.get_field_data(field, record) for field in fields])  # noqa
 
         return dataset
+
+    def get_import_hash_field_data(self, record):
+        return hashlib.sha256("".join(record).encode()).hexdigest()
 
     def get_field_data(self, field, record):
         return getattr(self, "get_{}_field_data".format(field))(record)

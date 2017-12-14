@@ -106,6 +106,12 @@ class Transaction(models.Model):
         choices=STATUS_CHOICES,
         default=STATUS_DEFAULT
     )
+    import_hash = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name=_("import hash"),
+    )
 
     class Meta:
         verbose_name = _("transaction")

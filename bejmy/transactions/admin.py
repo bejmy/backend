@@ -19,6 +19,10 @@ from bejmy.transactions.formats import MBankCSVFormat
 
 class TransactionResource(resources.ModelResource):
 
+    def skip_row(self, instance, original):
+        if original.pk:
+            return True
+
     def before_import_row(self, row, **kwargs):
         user_pk = kwargs['user'].pk
         if row['user'] is None:
@@ -48,6 +52,7 @@ class TransactionResource(resources.ModelResource):
 
     class Meta:
         model = Transaction
+        import_id_fields = ['import_hash']
         fields = [
             'id',
             'user',
@@ -66,6 +71,7 @@ class TransactionResource(resources.ModelResource):
             'modified_at',
             'status',
             'tags',
+            'import_hash',
         ]
 
 
