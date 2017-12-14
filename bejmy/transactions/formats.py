@@ -103,7 +103,7 @@ class MBankCSVFormat(Format):
             record.party))
 
     def _get_datetime(self, string):
-        return timezone.datetime.strptime(string, '%Y-%m-%d')
+        return timezone.datetime.strptime(string[:10], '%Y-%m-%d')
 
     def get_datetime_field_data(self, record):
         try:
